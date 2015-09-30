@@ -22,3 +22,5 @@ Route::resource('settings', 'SettingsController');
 Route::resource('profiles', 'ProfilesController');
 
 Route::resource('actions', 'ActionsController');
+
+Route::resource('profile_actions', 'Profile_actionsController');
