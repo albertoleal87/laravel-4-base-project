@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Dollar\Generators\GeneratorsServiceProvider', // https://github.com/wdollar/Laravel-4-Generators-Bootstrap-3
 
 	),
 
@@ -188,6 +189,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		'Ardent'            => 'LaravelBook\Ardent\Ardent', // https://github.com/laravel-ardent/ardent
 
 	),
 
