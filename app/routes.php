@@ -18,3 +18,5 @@ Route::get('/', function()
 
 
 Route::resource('settings', 'SettingsController');
+
+Route::resource('profiles', 'ProfilesController');
