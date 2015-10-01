@@ -2,6 +2,12 @@
 
 class BaseController extends Controller {
 
+	public function __construct(){
+		if(Auth::check() && !User::canAccess(Route::currentRouteName())){
+			Redirect::to('access_denied')->send();
+		}	
+	}
+
 	/**
 	 * Setup the layout used by the controller.
 	 *
