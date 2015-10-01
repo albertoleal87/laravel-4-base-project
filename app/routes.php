@@ -11,18 +11,15 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+
+Route::group(array('before' => 'auth'), function(){
+
+	Route::resource('settings', 'SettingsController');
+	Route::resource('profiles', 'ProfilesController');
+	Route::resource('actions', 'ActionsController');
+	Route::resource('profile_actions', 'Profile_actionsController');
+	Route::resource('users', 'UsersController');
+	
 });
 
-
-Route::resource('settings', 'SettingsController');
-
-Route::resource('profiles', 'ProfilesController');
-
-Route::resource('actions', 'ActionsController');
-
-Route::resource('profile_actions', 'Profile_actionsController');
-
-Route::resource('users', 'UsersController');
+Route::controller('/', 'HomeController');
