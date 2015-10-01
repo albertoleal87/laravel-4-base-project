@@ -16,7 +16,7 @@ class CreateActionsTable extends Migration {
 			$table->increments('id');
 			$table->boolean('enable')->default(1);
 			$table->string('name')->unique();
-			$table->text('description');
+			$table->text('description')->nullable();
 			$table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 		});

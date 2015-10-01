@@ -11,15 +11,17 @@ class HomeController extends BaseController {
     }
 
     public function getLogin(){
-        return View::make('login');
+        return Redirect::to('/');
     }
 
     public function postLogin(){
         $loginData = array(
             'email'		=> Input::get('email'),
-            'password'	=> Input::get('password')
+            'password'	=> Input::get('password'),
+            'enable' => 1,
         );
         if(Auth::attempt($loginData)){
+            Session::put('permissions', Auth::user()->permissions());
             return Redirect::to('/')->with('success', 'Iniciaste sesion');
         }else{
             return Redirect::to('/')->with('danger', 'Datos incorrectos')->withInput();
@@ -28,6 +30,7 @@ class HomeController extends BaseController {
 
     public function getLogout(){
         Auth::logout();
+        Session::forget('permissions');
         return Redirect::to('/')->with('warning', 'Cerraste sesión');
     }
 
