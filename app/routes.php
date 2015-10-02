@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::group(array('before' => 'auth'), function(){
 
 	Route::resource('settings', 'SettingsController');
@@ -20,9 +19,6 @@ Route::group(array('before' => 'auth'), function(){
 	Route::resource('profile_actions', 'Profile_actionsController');
 	Route::resource('users', 'UsersController');
 
-	Route::get('access_denied', function(){
-		return View::make('access_denied');
-	});	
 });
 
 Route::controller('/', 'HomeController');

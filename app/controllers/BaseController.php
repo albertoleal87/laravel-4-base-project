@@ -3,9 +3,10 @@
 class BaseController extends Controller {
 
 	public function __construct(){
-		if(Auth::check() && !User::canAccess(Route::currentRouteName())){
-			Redirect::to('access_denied')->send();
-		}	
+		Log::debug(Route::currentRouteName());
+		if(Auth::check() && !empty(Route::currentRouteName()) && !User::canAccess(Route::currentRouteName())){
+			Redirect::to('access-denied')->send();
+		}			
 	}
 
 	/**

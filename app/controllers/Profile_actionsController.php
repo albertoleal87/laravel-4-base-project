@@ -12,6 +12,7 @@ class Profile_actionsController extends BaseController {
 	public function __construct(Profile_action $profile_action)
 	{
 		$this->profile_action = $profile_action;
+		Parent::__construct();
 	}
 
 	/**

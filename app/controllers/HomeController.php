@@ -2,6 +2,10 @@
 
 class HomeController extends BaseController {
 
+    public function __construct(){
+        parent::__construct();
+    }
+
     public function getIndex(){
         if(Auth::check()){
 			return View::make('hello');
@@ -32,6 +36,10 @@ class HomeController extends BaseController {
         Auth::logout();
         Session::forget('permissions');
         return Redirect::to('/')->with('warning', 'Cerraste sesión');
+    }
+
+    public function getAccessDenied(){
+        return View::make('access_denied');        
     }
 
 }

@@ -16,7 +16,7 @@
     </div>
 </div>
 
-{{ Form::model($profile, array('class' => 'form-horizontal', 'method' => 'PATCH', 'route' => array('profiles.update', $profile->id))) }}
+{{ Form::model($profile, array('class' => 'form-horizontal', 'method' => 'PUT', 'route' => array('profiles.update', $profile->id))) }}
 
         <div class="form-group">
             {{ Form::label('enable', 'Enable:', array('class'=>'col-md-2 control-label')) }}

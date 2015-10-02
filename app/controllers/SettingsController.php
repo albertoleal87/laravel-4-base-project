@@ -12,6 +12,7 @@ class SettingsController extends BaseController {
 	public function __construct(Setting $setting)
 	{
 		$this->setting = $setting;
+		Parent::__construct();
 	}
 
 	/**

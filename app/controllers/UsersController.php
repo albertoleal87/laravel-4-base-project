@@ -12,6 +12,7 @@ class UsersController extends BaseController {
 	public function __construct(User $user)
 	{
 		$this->user = $user;
+		Parent::__construct();
 	}
 
 	/**

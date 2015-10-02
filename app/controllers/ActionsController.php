@@ -12,6 +12,7 @@ class ActionsController extends BaseController {
 	public function __construct(Action $action)
 	{
 		$this->action = $action;
+		Parent::__construct();
 	}
 
 	/**
