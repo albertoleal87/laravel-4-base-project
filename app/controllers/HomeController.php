@@ -8,7 +8,7 @@ class HomeController extends BaseController {
 
     public function getIndex(){
         if(Auth::check()){
-			return View::make('hello');
+			return View::make('layouts/main');
         }else{
             return View::make('login');
         }

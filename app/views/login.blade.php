@@ -4,65 +4,47 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>My App</title>
+		<title>My app</title>
 
 		{{ HTML::style('public/css/bootstrap.min.css') }}
-		{{ HTML::style('public/css/styles.css') }}
+		{{ HTML::style('public/css/sb-admin-2.css') }}
 
 	</head>
 	<body>
-
-        {{ Form::open( ['url'=>'login', 'method'=>'POST', 'class'=>'form-horizontal'] ) }}
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">Log in</h4>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="login-panel panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Please Sign In</h3>
 						</div>
-						<div class="modal-body">
+						<div class="panel-body">
+					        {{ Form::open( ['url'=>'login', 'method'=>'POST', 'class'=>'form-horizontal'] ) }}
+								<fieldset>
+									<div class="text-center">
+										@include('alerts')
+									</div>
 
-							<div class="form-group">
-								{{ Form::label('', '', array('class' => 'col-sm-2 control-label')); }}
-								<div class="col-sm-10">
-									<p class="help-block">Please log in to the app.</p>
-								</div>
-							</div>
+									<div class="form-group">
+		                                {{ Form::label('email', 'Email:', array('class' => 'col-sm-3 control-label')); }}
+										<div class="col-sm-9">
+											{{ Form::email('email', '', array('class' => 'form-control', 'placeholder'=>'E-mail', 'autofocus'=>"", 'autocomplete'=>'off')); }}
+										</div>
+									</div>
 
-							<div class="form-group">
-								{{ Form::label('email', 'Email:', array('class' => 'col-sm-2 control-label')); }}
-								<div class="col-sm-10">
-									{{ Form::email('email', '', array('class' => 'form-control', 'placeholder'=>'Email')); }}
-								</div>
-							</div>
-
-							<div class="form-group">
-								{{ Form::label('password', 'Password:', array('class' => 'col-sm-2 control-label')); }}
-								<div class="col-sm-10">
-									{{ Form::password('password', array('class' => 'form-control', 'placeholder'=>'Password')); }}
-								</div>
-							</div>
-
-							<div class="text-center">
-								@include('alerts')
-							</div>
-
-						</div>
-						<div class="modal-footer">
-							{{ Form::submit('Log in', array('class' => 'btn btn-primary center-block')); }}
+									<div class="form-group">
+		                                {{ Form::label('password', 'Password:', array('class' => 'col-sm-3 control-label')); }}
+										<div class="col-sm-9">
+											{{ Form::password('password', array('class' => 'form-control', 'placeholder'=>'Password', 'value'=>"")); }}
+										</div>
+									</div>
+									{{ Form::submit('Login', array('class' => 'btn btn-lg btn-success btn-block')); }}
+								</fieldset>
+							{{ Form::close() }}
 						</div>
 					</div>
 				</div>
 			</div>
-        {{ Form::close() }}
-
-		{{ HTML::script('public/js/jquery.min.js') }}
-		{{ HTML::script('public/js/bootstrap.min.js') }}
-
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('#myModal').modal('show');
-			})
-		</script>
-
+		</div>
 	</body>
 </html>
