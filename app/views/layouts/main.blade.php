@@ -7,17 +7,16 @@
 		<title>My app</title>
 
 		{{ HTML::style('public/css/bootstrap.min.css') }}
-		{{ HTML::style('public/css/metisMenu.min.css') }}
-		{{ HTML::style('public/css/sb-admin-2.css') }}
-		{{ HTML::style('public/css/font-awesome.min.css') }}
+		{{ HTML::style('public/css/styles.css') }}
 
 		{{ HTML::script('public/js/jquery.min.js') }}
 		{{ HTML::script('public/js/bootstrap.min.js') }}
-		{{ HTML::script('public/js/metisMenu.min.js') }}
-		{{ HTML::script('public/js/sb-admin-2.js') }}
+		{{ HTML::script('public/js/scripts.js') }}
+		
 	</head>
 
 	<body>
+
 		<div id="wrapper">
 			<!-- Navigation -->
 			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -35,7 +34,7 @@
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+							<i class="glyphicon glyphicon-envelope"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-messages">
 							<li>
@@ -77,7 +76,7 @@
 							<li>
 								<a class="text-center" href="#">
 									<strong>Read All Messages</strong>
-									<i class="fa fa-angle-right"></i>
+									<i class="glyphicon glyphicon-menu-right"></i>
 								</a>
 							</li>
 						</ul>
@@ -86,7 +85,7 @@
 					<!-- /.dropdown -->
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+							<i class="glyphicon glyphicon-tasks"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-tasks">
 							<li>
@@ -156,7 +155,7 @@
 							<li>
 								<a class="text-center" href="#">
 									<strong>See All Tasks</strong>
-									<i class="fa fa-angle-right"></i>
+									<i class="glyphicon glyphicon-menu-right"></i>
 								</a>
 							</li>
 						</ul>
@@ -165,13 +164,13 @@
 					<!-- /.dropdown -->
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+							<i class="glyphicon glyphicon-bell"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-alerts">
 							<li>
 								<a href="#">
 									<div>
-										<i class="fa fa-comment fa-fw"></i> New Comment
+										<i class="glyphicon glyphicon-comment"></i> New Comment
 										<span class="pull-right text-muted small">4 minutes ago</span>
 									</div>
 								</a>
@@ -180,16 +179,7 @@
 							<li>
 								<a href="#">
 									<div>
-										<i class="fa fa-twitter fa-fw"></i> 3 New Followers
-										<span class="pull-right text-muted small">12 minutes ago</span>
-									</div>
-								</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="#">
-									<div>
-										<i class="fa fa-envelope fa-fw"></i> Message Sent
+										<i class="glyphicon glyphicon-envelope"></i> Message Sent
 										<span class="pull-right text-muted small">4 minutes ago</span>
 									</div>
 								</a>
@@ -198,7 +188,7 @@
 							<li>
 								<a href="#">
 									<div>
-										<i class="fa fa-tasks fa-fw"></i> New Task
+										<i class="glyphicon glyphicon-tasks"></i> New Task
 										<span class="pull-right text-muted small">4 minutes ago</span>
 									</div>
 								</a>
@@ -207,7 +197,7 @@
 							<li>
 								<a href="#">
 									<div>
-										<i class="fa fa-upload fa-fw"></i> Server Rebooted
+										<i class="glyphicon glyphicon-open"></i> Server Rebooted
 										<span class="pull-right text-muted small">4 minutes ago</span>
 									</div>
 								</a>
@@ -216,7 +206,7 @@
 							<li>
 								<a class="text-center" href="#">
 									<strong>See All Alerts</strong>
-									<i class="fa fa-angle-right"></i>
+									<i class="glyphicon glyphicon-menu-right"></i>
 								</a>
 							</li>
 						</ul>
@@ -225,16 +215,16 @@
 					<!-- /.dropdown -->
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+							<i class="glyphicon glyphicon-user"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-user">
-							<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+							<li><a href="#"><i class="glyphicon glyphicon-user"></i> User Profile</a>
 							</li>
-							<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+							<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Settings</a>
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="{{ URL::to('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+								<a href="{{ URL::to('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
 							</li>
 						</ul>
 						<!-- /.dropdown-user -->
@@ -251,18 +241,18 @@
 									<input type="text" class="form-control" placeholder="Search...">
 									<span class="input-group-btn">
 									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
+										<i class="glyphicon glyphicon-search"></i>
 									</button>
 								</span>
 								</div>
 								<!-- /input-group -->
 							</li>
 							<li>
-								<a href="{{ URL::to('/') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+								<a href="{{ URL::to('/') }}" class="active"><i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level">
+								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-stats"></i> Charts<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="flot.html">Flot Charts</a>
 									</li>
@@ -273,14 +263,14 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+								<a href="tables.html"><i class="glyphicon glyphicon-th"></i> Tables</a>
 							</li>
 							<li>
-								<a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+								<a href="forms.html"><i class="glyphicon glyphicon-edit"></i> Forms</a>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level">
+								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-wrench"></i> UI Elements<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="panels-wells.html">Panels and Wells</a>
 									</li>
@@ -303,8 +293,8 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level">
+								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-list"></i> Multi-Level Dropdown<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="#">Second Level Item</a>
 									</li>
@@ -312,8 +302,8 @@
 										<a href="#">Second Level Item</a>
 									</li>
 									<li>
-										<a href="#">Third Level <span class="fa arrow"></span></a>
-										<ul class="nav nav-third-level">
+										<a href="#" class="toggle-menu">Third Level <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+										<ul class="nav nav-third-level toggle-item" style="display:none">
 											<li>
 												<a href="#">Third Level Item</a>
 											</li>
@@ -333,8 +323,8 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level">
+								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-duplicate"></i> Sample Pages<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="blank.html">Blank Page</a>
 									</li>

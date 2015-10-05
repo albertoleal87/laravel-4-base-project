@@ -7,7 +7,7 @@
 		<title>My app</title>
 
 		{{ HTML::style('public/css/bootstrap.min.css') }}
-		{{ HTML::style('public/css/sb-admin-2.css') }}
+		{{ HTML::style('public/css/styles.css') }}
 
 	</head>
 	<body>
