@@ -33,12 +33,12 @@
 
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<a class="dropdown-toggle" data-toggle="dropdown">
 							<i class="glyphicon glyphicon-envelope"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-messages">
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<strong>John Smith</strong>
 										<span class="pull-right text-muted">
@@ -50,7 +50,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<strong>John Smith</strong>
 										<span class="pull-right text-muted">
@@ -62,7 +62,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<strong>John Smith</strong>
 										<span class="pull-right text-muted">
@@ -74,7 +74,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a class="text-center" href="#">
+								<a class="text-center">
 									<strong>Read All Messages</strong>
 									<i class="glyphicon glyphicon-menu-right"></i>
 								</a>
@@ -84,12 +84,12 @@
 					</li>
 					<!-- /.dropdown -->
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<a class="dropdown-toggle" data-toggle="dropdown">
 							<i class="glyphicon glyphicon-tasks"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-tasks">
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<p>
 											<strong>Task 1</strong>
@@ -105,7 +105,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<p>
 											<strong>Task 2</strong>
@@ -121,7 +121,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<p>
 											<strong>Task 3</strong>
@@ -137,7 +137,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<p>
 											<strong>Task 4</strong>
@@ -153,7 +153,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a class="text-center" href="#">
+								<a class="text-center">
 									<strong>See All Tasks</strong>
 									<i class="glyphicon glyphicon-menu-right"></i>
 								</a>
@@ -163,12 +163,12 @@
 					</li>
 					<!-- /.dropdown -->
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<a class="dropdown-toggle" data-toggle="dropdown">
 							<i class="glyphicon glyphicon-bell"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-alerts">
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<i class="glyphicon glyphicon-comment"></i> New Comment
 										<span class="pull-right text-muted small">4 minutes ago</span>
@@ -177,7 +177,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<i class="glyphicon glyphicon-envelope"></i> Message Sent
 										<span class="pull-right text-muted small">4 minutes ago</span>
@@ -186,7 +186,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<i class="glyphicon glyphicon-tasks"></i> New Task
 										<span class="pull-right text-muted small">4 minutes ago</span>
@@ -195,7 +195,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="#">
+								<a>
 									<div>
 										<i class="glyphicon glyphicon-open"></i> Server Rebooted
 										<span class="pull-right text-muted small">4 minutes ago</span>
@@ -204,7 +204,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a class="text-center" href="#">
+								<a class="text-center">
 									<strong>See All Alerts</strong>
 									<i class="glyphicon glyphicon-menu-right"></i>
 								</a>
@@ -214,13 +214,13 @@
 					</li>
 					<!-- /.dropdown -->
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<a class="dropdown-toggle" data-toggle="dropdown">
 							<i class="glyphicon glyphicon-user"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-user">
-							<li><a href="#"><i class="glyphicon glyphicon-user"></i> User Profile</a>
+							<li><a><i class="glyphicon glyphicon-user"></i> User Profile</a>
 							</li>
-							<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Settings</a>
+							<li><a><i class="glyphicon glyphicon-cog"></i> Settings</a>
 							</li>
 							<li class="divider"></li>
 							<li>
@@ -251,7 +251,7 @@
 								<a href="{{ URL::to('/') }}" class="active"><i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
 							</li>
 							<li>
-								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-stats"></i> Charts<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-menu"><i class="glyphicon glyphicon-stats"></i> Charts<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="flot.html">Flot Charts</a>
@@ -269,7 +269,7 @@
 								<a href="forms.html"><i class="glyphicon glyphicon-edit"></i> Forms</a>
 							</li>
 							<li>
-								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-wrench"></i> UI Elements<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-menu"><i class="glyphicon glyphicon-wrench"></i> UI Elements<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="panels-wells.html">Panels and Wells</a>
@@ -293,28 +293,28 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-list"></i> Multi-Level Dropdown<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-menu"><i class="glyphicon glyphicon-list"></i> Multi-Level Dropdown<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
-										<a href="#">Second Level Item</a>
+										<a>Second Level Item</a>
 									</li>
 									<li>
-										<a href="#">Second Level Item</a>
+										<a>Second Level Item</a>
 									</li>
 									<li>
-										<a href="#" class="toggle-menu">Third Level <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+										<a class="toggle-menu">Third Level <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 										<ul class="nav nav-third-level toggle-item" style="display:none">
 											<li>
-												<a href="#">Third Level Item</a>
+												<a>Third Level Item</a>
 											</li>
 											<li>
-												<a href="#">Third Level Item</a>
+												<a>Third Level Item</a>
 											</li>
 											<li>
-												<a href="#">Third Level Item</a>
+												<a>Third Level Item</a>
 											</li>
 											<li>
-												<a href="#">Third Level Item</a>
+												<a>Third Level Item</a>
 											</li>
 										</ul>
 										<!-- /.nav-third-level -->
@@ -323,7 +323,7 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="#" class="toggle-menu"><i class="glyphicon glyphicon-duplicate"></i> Sample Pages<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-menu"><i class="glyphicon glyphicon-duplicate"></i> Sample Pages<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="blank.html">Blank Page</a>
