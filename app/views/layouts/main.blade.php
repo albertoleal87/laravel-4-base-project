@@ -32,8 +32,8 @@
 				<!-- /.navbar-header -->
 
 				<ul class="nav navbar-top-links navbar-right">
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">
+					<li class="toggle-top-menu">
+						<a>
 							<i class="glyphicon glyphicon-envelope"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-messages">
@@ -83,8 +83,8 @@
 						<!-- /.dropdown-messages -->
 					</li>
 					<!-- /.dropdown -->
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">
+					<li class="toggle-top-menu">
+						<a>
 							<i class="glyphicon glyphicon-tasks"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-tasks">
@@ -162,8 +162,8 @@
 						<!-- /.dropdown-tasks -->
 					</li>
 					<!-- /.dropdown -->
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">
+					<li class="toggle-top-menu">
+						<a>
 							<i class="glyphicon glyphicon-bell"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-alerts">
@@ -213,8 +213,8 @@
 						<!-- /.dropdown-alerts -->
 					</li>
 					<!-- /.dropdown -->
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">
+					<li class="toggle-top-menu">
+						<a>
 							<i class="glyphicon glyphicon-user"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-user">
@@ -251,7 +251,7 @@
 								<a href="{{ URL::to('/') }}" class="active"><i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
 							</li>
 							<li>
-								<a class="toggle-menu"><i class="glyphicon glyphicon-stats"></i> Charts<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-left-menu"><i class="glyphicon glyphicon-stats"></i> Charts<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="flot.html">Flot Charts</a>
@@ -269,7 +269,7 @@
 								<a href="forms.html"><i class="glyphicon glyphicon-edit"></i> Forms</a>
 							</li>
 							<li>
-								<a class="toggle-menu"><i class="glyphicon glyphicon-wrench"></i> UI Elements<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-left-menu"><i class="glyphicon glyphicon-wrench"></i> UI Elements<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="panels-wells.html">Panels and Wells</a>
@@ -293,7 +293,7 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a class="toggle-menu"><i class="glyphicon glyphicon-list"></i> Multi-Level Dropdown<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-left-menu"><i class="glyphicon glyphicon-list"></i> Multi-Level Dropdown<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a>Second Level Item</a>
@@ -302,7 +302,7 @@
 										<a>Second Level Item</a>
 									</li>
 									<li>
-										<a class="toggle-menu">Third Level <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+										<a class="toggle-left-menu">Third Level <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 										<ul class="nav nav-third-level toggle-item" style="display:none">
 											<li>
 												<a>Third Level Item</a>
@@ -323,7 +323,7 @@
 								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a class="toggle-menu"><i class="glyphicon glyphicon-duplicate"></i> Sample Pages<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-left-menu"><i class="glyphicon glyphicon-duplicate"></i> Sample Pages<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
 										<a href="blank.html">Blank Page</a>
