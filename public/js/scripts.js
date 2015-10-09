@@ -44,6 +44,7 @@ $(document).ready(function(){
 
 		// menu superior para dispositivos mobiles
 		$(".toggle-top-menu").click(function(){
+			$(".dropdown-menu").not($(this).find('.dropdown-menu')).hide();
 			$(this).find('.dropdown-menu').toggle(500);
 		});
 
