@@ -2,6 +2,8 @@
 
 class UsersController extends BaseController {
 
+	protected $layout = 'layouts.main';
+	
 	/**
 	 * User Repository
 	 *
@@ -22,9 +24,9 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = $this->user->all();
-
-		return View::make('users.index', compact('users'));
+		$users = User::with('Profile')->get();
+		
+		$this->layout->content = View::make('users.index', compact('users'));
 	}
 
 	/**

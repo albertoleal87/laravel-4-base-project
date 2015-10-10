@@ -76,6 +76,36 @@ $(document).ready(function(){
 
 	}
 
+	// convertir todos los title a tooltip
+	$('[title]').tooltip()
+
+	// convertir los que tengan la clase data-table a DataTable
+	$('.data-table').DataTable();
+
+	// confirmación para eliminar registros
+	$('.confirm-delete').on( "click", function() {
+		var currentForm = $(this).closest('form');
+		bootbox.confirm({
+			title: 'Confirmar eliminar',
+			message: '¿Estás seguro que deseas eliminar este registro?',
+			buttons: {
+				'cancel': {
+					label: 'Cancelar',
+					className: 'btn btn-default'
+				},
+				'confirm': {
+					label: 'Eliminar',
+					className: 'btn btn-danger'
+				}
+			},
+			callback: function(result) {
+				if (result) {
+					currentForm.submit();
+				}
+			}
+		});
+	});
+
 });
 
 

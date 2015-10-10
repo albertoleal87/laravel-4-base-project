@@ -4,19 +4,22 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>My app</title>
+		<title>{{ Config::get('app.name') }}</title>
 
 		{{ HTML::style('public/css/bootstrap.min.css') }}
+		{{ HTML::style('public/css/dataTables.bootstrap.min.css') }}
 		{{ HTML::style('public/css/styles.css') }}
 
 		{{ HTML::script('public/js/jquery.min.js') }}
 		{{ HTML::script('public/js/bootstrap.min.js') }}
+		{{ HTML::script('public/js/jquery.dataTables.min.js') }}
+		{{ HTML::script('public/js/dataTables.bootstrap.min.js') }}
+		{{ HTML::script('public/js/bootbox.min.js') }}
 		{{ HTML::script('public/js/scripts.js') }}
-		
+				
 	</head>
 
 	<body>
-
 		<div id="wrapper">
 			<!-- Navigation -->
 			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -27,7 +30,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="{{ URL::to('/') }}">SB Admin v2.0</a>
+					{{ link_to('/', Config::get('app.name'), ['class'=>'navbar-brand']) }}
 				</div>
 				<!-- /.navbar-header -->
 
@@ -220,7 +223,7 @@
 						<ul class="dropdown-menu dropdown-user">
 							<li><a><i class="glyphicon glyphicon-user"></i> User Profile</a>
 							</li>
-							<li><a><i class="glyphicon glyphicon-cog"></i> Settings</a>
+							<li><a href="{{ URL::to('settings') }}"><i class="glyphicon glyphicon-cog"></i> Settings</a>
 							</li>
 							<li class="divider"></li>
 							<li>
@@ -236,103 +239,39 @@
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li class="sidebar-search">
-								<div class="input-group custom-search-form">
-									<input type="text" class="form-control" placeholder="Search...">
-									<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</span>
-								</div>
-								<!-- /input-group -->
+							<li>
+								<a href="{{ URL::to('/') }}" class="{{ Request::segment(1) == '' ? 'active' : ''}}">
+									<i class="glyphicon glyphicon-dashboard"></i> Dashboard
+								</a>
 							</li>
 							<li>
-								<a href="{{ URL::to('/') }}" class="active"><i class="glyphicon glyphicon-dashboard"></i> Dashboard</a>
+								<a href="{{ URL::to('users') }}" class="{{ Request::segment(1) == 'users' ? 'active' : ''}}">
+									<i class="glyphicon glyphicon-user"></i> Users
+								</a>
 							</li>
 							<li>
-								<a class="toggle-left-menu"><i class="glyphicon glyphicon-stats"></i> Charts<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-left-menu"><i class="glyphicon glyphicon-list"></i> Profiles / Actions<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
-										<a href="flot.html">Flot Charts</a>
+										<a href="{{ URL::to('profiles') }}"> Profiles</a>
 									</li>
 									<li>
-										<a href="morris.html">Morris.js Charts</a>
+										<a href="{{ URL::to('actions') }}"> Actions</a>
+									</li>
+									<li>
+										<a href="{{ URL::to('profile_actions') }}"> Profile Actions</a>
 									</li>
 								</ul>
-								<!-- /.nav-second-level -->
 							</li>
 							<li>
-								<a href="tables.html"><i class="glyphicon glyphicon-th"></i> Tables</a>
+								<a href="{{ URL::to('settings') }}" class="{{ Request::segment(1) == 'settings' ? 'active' : ''}}">
+									<i class="glyphicon glyphicon-cog"></i> Settings
+								</a>
 							</li>
 							<li>
-								<a href="forms.html"><i class="glyphicon glyphicon-edit"></i> Forms</a>
-							</li>
-							<li>
-								<a class="toggle-left-menu"><i class="glyphicon glyphicon-wrench"></i> UI Elements<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
-								<ul class="nav nav-second-level toggle-item" style="display:none">
-									<li>
-										<a href="panels-wells.html">Panels and Wells</a>
-									</li>
-									<li>
-										<a href="buttons.html">Buttons</a>
-									</li>
-									<li>
-										<a href="notifications.html">Notifications</a>
-									</li>
-									<li>
-										<a href="typography.html">Typography</a>
-									</li>
-									<li>
-										<a href="icons.html"> Icons</a>
-									</li>
-									<li>
-										<a href="grid.html">Grid</a>
-									</li>
-								</ul>
-								<!-- /.nav-second-level -->
-							</li>
-							<li>
-								<a class="toggle-left-menu"><i class="glyphicon glyphicon-list"></i> Multi-Level Dropdown<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
-								<ul class="nav nav-second-level toggle-item" style="display:none">
-									<li>
-										<a>Second Level Item</a>
-									</li>
-									<li>
-										<a>Second Level Item</a>
-									</li>
-									<li>
-										<a class="toggle-left-menu">Third Level <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
-										<ul class="nav nav-third-level toggle-item" style="display:none">
-											<li>
-												<a>Third Level Item</a>
-											</li>
-											<li>
-												<a>Third Level Item</a>
-											</li>
-											<li>
-												<a>Third Level Item</a>
-											</li>
-											<li>
-												<a>Third Level Item</a>
-											</li>
-										</ul>
-										<!-- /.nav-third-level -->
-									</li>
-								</ul>
-								<!-- /.nav-second-level -->
-							</li>
-							<li>
-								<a class="toggle-left-menu"><i class="glyphicon glyphicon-duplicate"></i> Sample Pages<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
-								<ul class="nav nav-second-level toggle-item" style="display:none">
-									<li>
-										<a href="blank.html">Blank Page</a>
-									</li>
-									<li>
-										<a href="login.html">Login Page</a>
-									</li>
-								</ul>
-								<!-- /.nav-second-level -->
+								<a href="{{ URL::to('logout') }}">
+									<i class="glyphicon glyphicon-log-out"></i> Log out
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -342,15 +281,15 @@
 			</nav>
 
 			<div id="page-wrapper">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">Dashboard</h1>
-					</div>
-				</div>
+
+
+				{{ $content }}			
+		
 			</div>
 			<!-- /#page-wrapper -->
 
 		</div>
 		<!-- /#wrapper -->
+
 	</body>
 </html>

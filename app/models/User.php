@@ -41,4 +41,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return (in_array($action, $permissions)) ? true : false;
 	}
 
+    public function profile(){
+        return $this->belongsTo('Profile');
+    }
+
+
 }
