@@ -15,12 +15,13 @@
 		{{ HTML::script('public/js/jquery.dataTables.min.js') }}
 		{{ HTML::script('public/js/dataTables.bootstrap.min.js') }}
 		{{ HTML::script('public/js/bootbox.min.js') }}
-		
-		{{ include('public/js/scripts.php') }}
+
+		<?php include('public/js/scripts.php') ?>
 				
 	</head>
 
 	<body>
+
 		<div id="wrapper">
 			<!-- Navigation -->
 			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -295,11 +296,5 @@
 
 		</div>
 		<!-- /#wrapper -->
-		<script type="text/javascript">
-
-			var settings = <?php echo json_encode(Setting::all()->lists('value','key')); ?>;
-			var lang = '<?php echo Config::get("app.locale"); ?>';
-
-		</script>
 	</body>
 </html>
