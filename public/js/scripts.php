@@ -14,6 +14,11 @@
 		}
 	}
 
+	// metodo para deshabilitar inputs
+	function disable_inputs(){
+		$('input ,select, textarea').attr('disabled',true);
+	}
+
 	// DOCUMENT READY FUNCTION
 	$(document).ready(function(){
 		
@@ -79,6 +84,9 @@
 		// convertir todos los title a tooltip
 		$('[title]').tooltip();
 
+		// asi homologamos los data-table
+		$('.data-table').addClass('table-striped table-hover');
+
 		// convertir los que tengan la clase data-table a DataTable
 		if(app.lang == 'es'){
 			$('.data-table').DataTable({"language": {"url": "public/js/dataTables.Spanish.json"}});
@@ -88,23 +96,31 @@
 
 		// confirmación para eliminar registros
 		$('.confirm-delete').on( "click", function() {
-			var currentForm = $(this).closest('form');
+
+			var element = $(this);
+
+			element.closest('tr').addClass('danger');
+
 			bootbox.confirm({
 				title: '<?php echo trans("forms.confirm_delete_title") ?>',
 				message: '<?php echo trans("forms.confirm_delete_message") ?>',
+				backdrop: true,
+				onEscape: function() {},
 				buttons: {
 					'cancel': {
-						label: '<?php echo trans("forms.confirm_delete_btn_cancel") ?>',
-						className: 'btn btn-default'
+						label: ' <?php echo trans("forms.confirm_delete_btn_cancel") ?>',
+						className: 'btn btn-default glyphicon glyphicon-remove'
 					},
 					'confirm': {
-						label: '<?php echo trans("forms.confirm_delete_btn_delete") ?>',
-						className: 'btn btn-danger'
+						label: ' <?php echo trans("forms.confirm_delete_btn_delete") ?>',
+						className: 'btn btn-danger glyphicon glyphicon-trash'
 					}
 				},
 				callback: function(result) {
-					if (result) {
-						currentForm.submit();
+					if(result) {
+						element.closest('form').submit();
+					}else{
+						element.closest('tr').removeClass('danger');
 					}
 				}
 			});

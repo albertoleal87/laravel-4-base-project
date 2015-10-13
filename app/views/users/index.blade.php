@@ -5,10 +5,11 @@
 <div class="row">
 	@if ($users->count())
 		<div class="table-responsive">
-			<table class="table table-striped table-hover data-table">
+			<table class="table data-table">
 				<thead>
 					<tr>
 						<th class="col-md-1">{{ trans('modules/users.field_enabled') }}</th>
+						<th class="col-md-1">{{ trans('modules/users.field_id') }}</th>						
 						<th>{{ trans('modules/users.field_profile_id') }}</th>
 						<th>{{ trans('modules/users.field_name') }}</th>
 						<th>{{ trans('modules/users.field_last_name') }}</th>
@@ -28,6 +29,7 @@
 									<button class="btn btn-xs btn-danger btn-block"><i class="glyphicon glyphicon-remove"></i> Inactivo</button>								
 								@endif
 							</td>
+							<td>{{{ $user->id }}}</td>
 							<td>{{{ $user->profile->name }}}</td>
 							<td>{{{ $user->name }}}</td>
 							<td>{{{ $user->last_name }}}</td>

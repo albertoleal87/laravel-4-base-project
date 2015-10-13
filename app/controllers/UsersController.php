@@ -5,19 +5,6 @@ class UsersController extends BaseController {
 	protected $layout = 'layouts.main';
 	
 	/**
-	 * User Repository
-	 *
-	 * @var User
-	 */
-	protected $user;
-
-	public function __construct(User $user)
-	{
-		$this->user = $user;
-		Parent::__construct();
-	}
-
-	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -38,7 +25,7 @@ class UsersController extends BaseController {
 	public function create()
 	{
 		$user = new User();
-		$profiles = Profile::where('enabled',1)->lists('name','id');
+		$profiles = Profile::lists('name','id');
 		
 		$this->layout->title = trans('modules/users.create_user');
 		$this->layout->content = View::make('users.create', compact('user','profiles'));
@@ -68,12 +55,11 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$user = User::find($id);
+		$user = User::findOrFail($id);
+		$profiles = Profile::lists('name','id');
 		
-		if(empty($user)){
-			return Redirect::route('users.index');
-		}
-		$this->layout->content = View::make('users.show', compact('user'));
+		$this->layout->title = trans('modules/users.show_user');
+		$this->layout->content = View::make('users.show', compact('user','profiles'));
 	}
 
 	/**
@@ -85,7 +71,10 @@ class UsersController extends BaseController {
 	public function edit($id)
 	{
 		$user = User::findOrFail($id);
-		$this->layout->content = View::make('users.edit', compact('user'));
+		$profiles = Profile::lists('name','id');
+		
+		$this->layout->title = trans('modules/users.edit_user');
+		$this->layout->content = View::make('users.edit', compact('user','profiles'));
 	}
 
 	/**
@@ -95,22 +84,14 @@ class UsersController extends BaseController {
 	 * @return Response
 	 */
 	public function update($id)
-	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, User::$rules);
+	{	
+		$user = User::findOrFail($id);
 
-		if ($validation->passes())
-		{
-			$user = $this->user->find($id);
-			$user->update($input);
-
-			return Redirect::route('users.show', $id);
+		if($user->update(Input::all())){
+			return Redirect::route('users.index')->with('success', trans('modules/users.user_updated_successful'));
+		}else{
+			return Redirect::route('users.edit', $id)->withInput()->withErrors($user->errors());
 		}
-
-		return Redirect::route('users.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -121,9 +102,11 @@ class UsersController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->user->find($id)->delete();
-
-		return Redirect::route('users.index');
+		if(User::destroy($id)){
+			return Redirect::route('users.index')->with('success', trans('modules/users.user_deleted_successful'));
+		}else{
+			return Redirect::route('users.index')->with('danger', trans('modules/users.user_deleted_error'));
+		}
 	}
 
 }

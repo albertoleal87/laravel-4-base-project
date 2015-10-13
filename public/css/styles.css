@@ -331,3 +331,11 @@ body {
 .custom-title{
 	color:#337ab7;
 }
+
+.data-table th{
+	text-align: center;
+}
+
+.data-table td{
+	text-align: center;
+}

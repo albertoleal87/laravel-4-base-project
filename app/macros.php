@@ -29,6 +29,10 @@ Form::macro('btn_cancel', function($url){
 	return "<a href='{$url}' class='btn btn-danger'><i class='glyphicon glyphicon-remove'></i> {$value}</a>";
 });
 
+Form::macro('btn_return', function($url){
+	$value = trans('forms.return');
+	return "<a href='{$url}' class='btn btn-default'><i class='glyphicon glyphicon-triangle-left'></i> {$value}</a>";
+});
 
 
 

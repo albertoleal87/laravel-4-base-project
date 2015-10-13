@@ -10,8 +10,12 @@ return array(
 	'delete_user' => 'Eliminar usuario',
 	'there_are_no_users' => 'No hay usuarios registrados.',
 	'user_created_successful' => 'Usuario creado con exito.',
+	'user_updated_successful' => 'Usuario actualizado con exito.',
+	'user_deleted_successful' => 'Usuario eliminado con exito.',
+	'user_deleted_error' => 'Ocurrio un error al intentar eliminar el usuario.',
 
 	// fields
+	'field_id' => 'Id',
 	'field_enabled' => 'Activo',
 	'field_profile_id' => 'Perfil',
 	'field_name' => 'Nombre',

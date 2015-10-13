@@ -4,6 +4,7 @@ return array(
 
 	'save' => 'Guardar',
 	'cancel' => 'Cancelar',
+	'return' => 'Regresar',
 
 	'show_register' => 'Ver registro',
 	'edit_register' => 'Editar registro',
