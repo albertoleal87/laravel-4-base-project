@@ -11,9 +11,9 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$users = User::with('Profile')->get();
+		$users = User::with('profile')->get();
 		
-		$this->layout->title = trans('modules/users.title');
+		$this->layout->title = trans('users.title');
 		$this->layout->content = View::make('users.index', compact('users'));
 	}
 
@@ -27,7 +27,7 @@ class UsersController extends BaseController {
 		$user = new User();
 		$profiles = Profile::lists('name','id');
 		
-		$this->layout->title = trans('modules/users.create_user');
+		$this->layout->title = trans('users.create_user');
 		$this->layout->content = View::make('users.create', compact('user','profiles'));
 	}
 
@@ -41,7 +41,7 @@ class UsersController extends BaseController {
 		$user = new User(Input::all());
 
 		if($user->save()){
-			return Redirect::route('users.index')->with('success', trans('modules/users.user_created_successful'));
+			return Redirect::route('users.index')->with('success', trans('users.user_created_successful'));
 		}else{
 			return Redirect::route('users.create')->withInput()->withErrors($user->errors());
 		}
@@ -58,7 +58,7 @@ class UsersController extends BaseController {
 		$user = User::findOrFail($id);
 		$profiles = Profile::lists('name','id');
 		
-		$this->layout->title = trans('modules/users.show_user');
+		$this->layout->title = trans('users.show_user');
 		$this->layout->content = View::make('users.show', compact('user','profiles'));
 	}
 
@@ -73,7 +73,7 @@ class UsersController extends BaseController {
 		$user = User::findOrFail($id);
 		$profiles = Profile::lists('name','id');
 		
-		$this->layout->title = trans('modules/users.edit_user');
+		$this->layout->title = trans('users.edit_user');
 		$this->layout->content = View::make('users.edit', compact('user','profiles'));
 	}
 
@@ -88,7 +88,7 @@ class UsersController extends BaseController {
 		$user = User::findOrFail($id);
 
 		if($user->update(Input::all())){
-			return Redirect::route('users.index')->with('success', trans('modules/users.user_updated_successful'));
+			return Redirect::route('users.index')->with('success', trans('users.user_updated_successful'));
 		}else{
 			return Redirect::route('users.edit', $id)->withInput()->withErrors($user->errors());
 		}
@@ -103,9 +103,9 @@ class UsersController extends BaseController {
 	public function destroy($id)
 	{
 		if(User::destroy($id)){
-			return Redirect::route('users.index')->with('success', trans('modules/users.user_deleted_successful'));
+			return Redirect::route('users.index')->with('success', trans('users.user_deleted_successful'));
 		}else{
-			return Redirect::route('users.index')->with('danger', trans('modules/users.user_deleted_error'));
+			return Redirect::route('users.index')->with('danger', trans('users.user_deleted_error'));
 		}
 	}
 

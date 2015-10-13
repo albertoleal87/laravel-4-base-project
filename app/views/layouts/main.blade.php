@@ -223,13 +223,13 @@
 							<i class="glyphicon glyphicon-user"></i>  <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-user">
-							<li><a><i class="glyphicon glyphicon-user"></i> User Profile</a>
+							<li><a><i class="glyphicon glyphicon-user"></i> {{ trans('menu.user_profile') }}</a>
 							</li>
-							<li><a href="{{ URL::to('settings') }}"><i class="glyphicon glyphicon-cog"></i> Settings</a>
+							<li><a href="{{ URL::to('settings') }}"><i class="glyphicon glyphicon-cog"></i> {{ trans('menu.settings') }}</a>
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="{{ URL::to('logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+								<a href="{{ URL::to('logout') }}"><i class="glyphicon glyphicon-log-out"></i> {{ trans('menu.logout') }}</a>
 							</li>
 						</ul>
 						<!-- /.dropdown-user -->
@@ -243,36 +243,36 @@
 						<ul class="nav" id="side-menu">
 							<li>
 								<a href="{{ URL::to('/') }}" class="{{ Request::segment(1) == '' ? 'active' : ''}}">
-									<i class="glyphicon glyphicon-dashboard"></i> Dashboard
+									<i class="glyphicon glyphicon-dashboard"></i> {{ trans('menu.dashboard') }}
 								</a>
 							</li>
 							<li>
 								<a href="{{ URL::to('users') }}" class="{{ Request::segment(1) == 'users' ? 'active' : ''}}">
-									<i class="glyphicon glyphicon-user"></i> Users
+									<i class="glyphicon glyphicon-user"></i> {{ trans('menu.users') }}
 								</a>
 							</li>
 							<li>
-								<a class="toggle-left-menu"><i class="glyphicon glyphicon-list"></i> Profiles / Actions<span class="glyphicon glyphicon-menu-down pull-right"></span></a>
+								<a class="toggle-left-menu"><i class="glyphicon glyphicon-list"></i> {{ trans('menu.profiles_actions_main') }} <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
 									<li>
-										<a href="{{ URL::to('profiles') }}"> Profiles</a>
+										<a href="{{ URL::to('profiles') }}"> {{ trans('menu.profiles') }}</a>
 									</li>
 									<li>
-										<a href="{{ URL::to('actions') }}"> Actions</a>
+										<a href="{{ URL::to('actions') }}"> {{ trans('menu.actions') }}</a>
 									</li>
 									<li>
-										<a href="{{ URL::to('profile_actions') }}"> Profile Actions</a>
+										<a href="{{ URL::to('profile_actions') }}"> {{ trans('menu.profile_actions_sub') }}</a>
 									</li>
 								</ul>
 							</li>
 							<li>
 								<a href="{{ URL::to('settings') }}" class="{{ Request::segment(1) == 'settings' ? 'active' : ''}}">
-									<i class="glyphicon glyphicon-cog"></i> Settings
+									<i class="glyphicon glyphicon-cog"></i> {{ trans('menu.settings') }}
 								</a>
 							</li>
 							<li>
 								<a href="{{ URL::to('logout') }}">
-									<i class="glyphicon glyphicon-log-out"></i> Log out
+									<i class="glyphicon glyphicon-log-out"></i> {{ trans('menu.logout') }}
 								</a>
 							</li>
 						</ul>
@@ -284,7 +284,7 @@
 
 			<div id="page-wrapper">
 				<div class="row">
-					<h1 class="page-header text-center custom-title">{{ isset($title) ? $title : '' }}</h1>
+					<h1 class="page-header text-center custom-title text-uppercase">{{ isset($title) ? $title : '' }}</h1>
 				</div>
 
 				@include('alerts')

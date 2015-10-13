@@ -34,6 +34,16 @@ Form::macro('btn_return', function($url){
 	return "<a href='{$url}' class='btn btn-default'><i class='glyphicon glyphicon-triangle-left'></i> {$value}</a>";
 });
 
+Form::macro('btn_active', function(){
+	$value = trans('forms.active');
+	return "<button class='btn btn-xs btn-success btn-block'><i class='glyphicon glyphicon-ok'></i> {$value}</button>";
+});
+
+Form::macro('btn_inactive', function(){
+	$value = trans('forms.inactive');
+	return "<button class='btn btn-xs btn-danger btn-block'><i class='glyphicon glyphicon-remove'></i> {$value}</button>";
+});
+
 
 
 

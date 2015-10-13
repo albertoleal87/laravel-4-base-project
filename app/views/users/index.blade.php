@@ -1,5 +1,5 @@
 <div class="row">
-	{{ Form::btn_create( URL::route('users.create'), trans('modules/users.create_user') ) }}
+	{{ Form::btn_create( URL::route('users.create'), trans('users.create_user') ) }}
 </div>
 <br>	
 <div class="row">
@@ -8,14 +8,14 @@
 			<table class="table data-table">
 				<thead>
 					<tr>
-						<th class="col-md-1">{{ trans('modules/users.field_enabled') }}</th>
-						<th class="col-md-1">{{ trans('modules/users.field_id') }}</th>						
-						<th>{{ trans('modules/users.field_profile_id') }}</th>
-						<th>{{ trans('modules/users.field_name') }}</th>
-						<th>{{ trans('modules/users.field_last_name') }}</th>
-						<th>{{ trans('modules/users.field_mother_last_name') }}</th>
-						<th>{{ trans('modules/users.field_email') }}</th>
-						<th>{{ trans('modules/users.field_options') }}</th>
+						<th class="col-md-1">{{ trans('users.field_enabled') }}</th>
+						<th class="col-md-1">{{ trans('users.field_id') }}</th>						
+						<th>{{ trans('users.field_profile_id') }}</th>
+						<th>{{ trans('users.field_name') }}</th>
+						<th>{{ trans('users.field_last_name') }}</th>
+						<th>{{ trans('users.field_mother_last_name') }}</th>
+						<th>{{ trans('users.field_email') }}</th>
+						<th>{{ trans('users.field_options') }}</th>
 					</tr>
 				</thead>
 
@@ -24,9 +24,9 @@
 						<tr>
 							<td>
 								@if($user->enabled == 1)
-									<button class="btn btn-xs btn-success btn-block"><i class="glyphicon glyphicon-ok"></i> Activo</button>
+									{{ Form::btn_active() }}
 								@else
-									<button class="btn btn-xs btn-danger btn-block"><i class="glyphicon glyphicon-remove"></i> Inactivo</button>								
+									{{ Form::btn_inactive() }}
 								@endif
 							</td>
 							<td>{{{ $user->id }}}</td>
@@ -48,6 +48,6 @@
 			</table>
 		</div>
 	@else
-		{{ trans('modules/users.there_are_no_users') }}	
+		{{ trans('users.there_are_no_users') }}	
 	@endif
 </div>

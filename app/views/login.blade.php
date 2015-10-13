@@ -8,7 +8,9 @@
 
 		{{ HTML::style('public/css/bootstrap.min.css') }}
 		{{ HTML::style('public/css/styles.css') }}
-
+		{{ HTML::script('public/js/jquery.min.js') }}
+		{{ HTML::script('public/js/bootstrap.min.js') }}
+	
 	</head>
 	<body>
 		<div class="container">
@@ -19,26 +21,34 @@
 							<h3 class="panel-title">Please Sign In</h3>
 						</div>
 						<div class="panel-body">
-					        {{ Form::open( ['url'=>'login', 'method'=>'POST', 'class'=>'form-horizontal'] ) }}
+							{{ Form::open( ['url'=>'login', 'method'=>'POST', 'class'=>'form-horizontal'] ) }}
 								<fieldset>
-									<div class="text-center">
-										@include('alerts')
-									</div>
 
 									<div class="form-group">
-		                                {{ Form::label('email', 'Email:', array('class' => 'col-sm-3 control-label')); }}
+										{{ Form::label('email', 'Email:', array('class' => 'col-sm-3 control-label')); }}
 										<div class="col-sm-9">
 											{{ Form::email('email', '', array('class' => 'form-control', 'placeholder'=>'E-mail', 'autofocus'=>"", 'autocomplete'=>'off')); }}
 										</div>
 									</div>
 
 									<div class="form-group">
-		                                {{ Form::label('password', 'Password:', array('class' => 'col-sm-3 control-label')); }}
+										{{ Form::label('password', 'Password:', array('class' => 'col-sm-3 control-label')); }}
 										<div class="col-sm-9">
 											{{ Form::password('password', array('class' => 'form-control', 'placeholder'=>'Password', 'value'=>"")); }}
 										</div>
 									</div>
+									<div class="form-group">
+										{{ Form::label('lang', 'Lang:', array('class' => 'col-sm-3 control-label')); }}
+										<div class="col-sm-9">
+											{{ Form::select('lang', array('en'=>'English', 'es' => 'Spanish'), false, array('class' => 'form-control' ) ); }}
+										</div>
+									</div>
 									{{ Form::submit('Login', array('class' => 'btn btn-lg btn-primary btn-block')); }}
+									
+									<br>
+									
+									@include('alerts')
+
 								</fieldset>
 							{{ Form::close() }}
 						</div>

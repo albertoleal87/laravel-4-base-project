@@ -8,7 +8,7 @@ class HomeController extends BaseController {
 
     public function getIndex(){
         if(Auth::check()){
-			return View::make('layouts.main')->with(array('content'=>'','title'=>'Dashboard'));
+			return View::make('layouts.main')->with(array('content'=>'','title'=>trans('menu.dashboard')));
         }else{
             return View::make('login');
         }
@@ -19,6 +19,9 @@ class HomeController extends BaseController {
     }
 
     public function postLogin(){
+
+        Session::put('lang', Input::get('lang'));            
+        Config::set('app.locale',Session::get('lang'));
         
         $loginData = array(
             'email'		=> Input::get('email'),
@@ -29,26 +32,27 @@ class HomeController extends BaseController {
 
             if(Auth::user()->enabled != 1){
                 Auth::logout();
-                return Redirect::to('/')->with('danger', 'El usuario se encuentra inactivo')->withInput();
+                return Redirect::to('/')->with('danger', trans('forms.login_user_inactive'))->withInput();
             }
             
             if(Auth::user()->profile->enabled != 1){
                 Auth::logout();
-                return Redirect::to('/')->with('danger', 'El perfil se encuentra inactivo')->withInput();
+                return Redirect::to('/')->with('danger', trans('forms.login_profile_inactive'))->withInput();
             }
 
             Session::put('permissions', Auth::user()->profile->actions_enabled()->lists('name','id'));
 
-            return Redirect::to('/')->with('success', 'Iniciaste sesion');
+            return Redirect::to('/')->with('success', trans('forms.login_welcome',['user_name'=>Auth::user()->name]));
         }else{
-            return Redirect::to('/')->with('danger', 'Datos incorrectos')->withInput();
+            return Redirect::to('/')->with('danger', trans('forms.login_error'))->withInput();
         }
     }
 
     public function getLogout(){
         Auth::logout();
         Session::forget('permissions');
-        return Redirect::to('/')->with('warning', 'Cerraste sesión');
+        Session::forget('lang');
+        return Redirect::to('/')->with('success', trans('forms.login_good_bay'));
     }
 
     public function getAccessDenied(){

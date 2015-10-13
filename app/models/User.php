@@ -26,13 +26,17 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 		return $this->belongsTo('Profile');
 	}
 
+	public function full_name(){
+		return "{$this->name} {$this->last_name} {$this->mother_last_name}";
+	}
+
 	public function beforeValidate(){
 		User::$customMessages = array(
-			'name.required' => trans('modules/users.name_required'),
-			'last_name.required' => trans('modules/users.last_name_required'),
-			'mother_last_name.required' => trans('modules/users.mother_last_name_required'),
-			'email.required' => trans('modules/users.email_required'),
-			'password.required' => trans('modules/users.password_required'),
+			'name.required' => trans('users.name_required'),
+			'last_name.required' => trans('users.last_name_required'),
+			'mother_last_name.required' => trans('users.mother_last_name_required'),
+			'email.required' => trans('users.email_required'),
+			'password.required' => trans('users.password_required'),
 		);
 	}
 
