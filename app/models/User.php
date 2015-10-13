@@ -5,18 +5,14 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Ardent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
 	protected $table = 'users';
 
-	protected $hidden = array('password', 'remember_token');
-
-	protected $fillable = array();
+	protected $fillable = array('enabled','profile_id','name','last_name','mother_last_name','email','password');
 	
-	protected $guarded = array();
-
 	public static $rules = array(
 		'profile_id' => 'required',
 		'name' => 'required',
@@ -26,24 +22,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'password' => 'required',
 	);
 
-	public function permissions(){
-		return Profile_action::select('actions.name as name','actions.id as id')
-			->join('profiles', 'profiles.id', '=', 'profile_actions.profile_id')
-			->join('actions', 'actions.id', '=', 'profile_actions.action_id')
-			->where('profiles.enable', 1)
-			->where('actions.enable', 1)
-			->where('profiles.id', $this->profile_id)
-			->lists('name','id');
+	public function profile(){
+		return $this->belongsTo('Profile');
+	}
+
+	public function beforeValidate(){
+		User::$customMessages = array(
+			'name.required' => trans('modules/users.name_required'),
+			'last_name.required' => trans('modules/users.last_name_required'),
+			'mother_last_name.required' => trans('modules/users.mother_last_name_required'),
+			'email.required' => trans('modules/users.email_required'),
+			'password.required' => trans('modules/users.password_required'),
+		);
 	}
 
 	public static function canAccess($action){
 		$permissions = Session::get('permissions');
 		return (in_array($action, $permissions)) ? true : false;
 	}
-
-    public function profile(){
-        return $this->belongsTo('Profile');
-    }
 
 
 }

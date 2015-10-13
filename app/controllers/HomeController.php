@@ -8,7 +8,7 @@ class HomeController extends BaseController {
 
     public function getIndex(){
         if(Auth::check()){
-			return View::make('layouts.main')->with(array('content'=>''));
+			return View::make('layouts.main')->with(array('content'=>'','title'=>'Dashboard'));
         }else{
             return View::make('login');
         }
@@ -19,13 +19,26 @@ class HomeController extends BaseController {
     }
 
     public function postLogin(){
+        
         $loginData = array(
             'email'		=> Input::get('email'),
             'password'	=> Input::get('password'),
-            'enable' => 1,
         );
+
         if(Auth::attempt($loginData)){
-            Session::put('permissions', Auth::user()->permissions());
+
+            if(Auth::user()->enabled != 1){
+                Auth::logout();
+                return Redirect::to('/')->with('danger', 'El usuario se encuentra inactivo')->withInput();
+            }
+            
+            if(Auth::user()->profile->enabled != 1){
+                Auth::logout();
+                return Redirect::to('/')->with('danger', 'El perfil se encuentra inactivo')->withInput();
+            }
+
+            Session::put('permissions', Auth::user()->profile->actions_enabled()->lists('name','id'));
+
             return Redirect::to('/')->with('success', 'Iniciaste sesion');
         }else{
             return Redirect::to('/')->with('danger', 'Datos incorrectos')->withInput();

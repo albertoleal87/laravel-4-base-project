@@ -15,7 +15,8 @@
 		{{ HTML::script('public/js/jquery.dataTables.min.js') }}
 		{{ HTML::script('public/js/dataTables.bootstrap.min.js') }}
 		{{ HTML::script('public/js/bootbox.min.js') }}
-		{{ HTML::script('public/js/scripts.js') }}
+		
+		{{ include('public/js/scripts.php') }}
 				
 	</head>
 
@@ -281,15 +282,24 @@
 			</nav>
 
 			<div id="page-wrapper">
+				<div class="row">
+					<h1 class="page-header text-center custom-title">{{ isset($title) ? $title : '' }}</h1>
+				</div>
 
+				@include('alerts')
 
-				{{ $content }}			
+				{{ isset($content) ? $content : '' }}
 		
 			</div>
 			<!-- /#page-wrapper -->
 
 		</div>
 		<!-- /#wrapper -->
+		<script type="text/javascript">
 
+			var settings = <?php echo json_encode(Setting::all()->lists('value','key')); ?>;
+			var lang = '<?php echo Config::get("app.locale"); ?>';
+
+		</script>
 	</body>
 </html>

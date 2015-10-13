@@ -38,7 +38,7 @@
 											{{ Form::password('password', array('class' => 'form-control', 'placeholder'=>'Password', 'value'=>"")); }}
 										</div>
 									</div>
-									{{ Form::submit('Login', array('class' => 'btn btn-lg btn-success btn-block')); }}
+									{{ Form::submit('Login', array('class' => 'btn btn-lg btn-primary btn-block')); }}
 								</fieldset>
 							{{ Form::close() }}
 						</div>

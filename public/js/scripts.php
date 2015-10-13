@@ -1,3 +1,5 @@
+<script type="text/javascript">
+
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
@@ -80,21 +82,29 @@ $(document).ready(function(){
 	$('[title]').tooltip()
 
 	// convertir los que tengan la clase data-table a DataTable
-	$('.data-table').DataTable();
+	if(lang == 'es'){
+		$('.data-table').DataTable({
+			"language": {
+				"url": "public/js/dataTables.Spanish.json"
+			}
+		});
+	}else{
+		$('.data-table').DataTable();
+	}	
 
 	// confirmación para eliminar registros
 	$('.confirm-delete').on( "click", function() {
 		var currentForm = $(this).closest('form');
 		bootbox.confirm({
-			title: 'Confirmar eliminar',
-			message: '¿Estás seguro que deseas eliminar este registro?',
+			title: '<?php echo trans("forms.confirm_delete_title") ?>',
+			message: '<?php echo trans("forms.confirm_delete_message") ?>',
 			buttons: {
 				'cancel': {
-					label: 'Cancelar',
+					label: '<?php echo trans("forms.confirm_delete_btn_cancel") ?>',
 					className: 'btn btn-default'
 				},
 				'confirm': {
-					label: 'Eliminar',
+					label: '<?php echo trans("forms.confirm_delete_btn_delete") ?>',
 					className: 'btn btn-danger'
 				}
 			},
@@ -108,4 +118,4 @@ $(document).ready(function(){
 
 });
 
-
+</script>

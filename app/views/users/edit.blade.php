@@ -1,7 +1,3 @@
-@extends('layouts.scaffold')
-
-@section('main')
-
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
         <h1>Edit User</h1>
@@ -84,5 +80,3 @@
 </div>
 
 {{ Form::close() }}
-
-@stop

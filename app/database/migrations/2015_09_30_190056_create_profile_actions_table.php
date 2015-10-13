@@ -14,7 +14,7 @@ class CreateProfileActionsTable extends Migration {
 	{
 		Schema::create('profile_actions', function(Blueprint $table) {
 			$table->increments('id');
-			$table->boolean('enable')->default(1);
+			$table->boolean('enabled')->default(1);
 			$table->integer('profile_id')->unsigned();
 			$table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
 			$table->integer('action_id')->unsigned();

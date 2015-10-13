@@ -26,6 +26,7 @@ class UsersController extends BaseController {
 	{
 		$users = User::with('Profile')->get();
 		
+		$this->layout->title = trans('modules/users.title');
 		$this->layout->content = View::make('users.index', compact('users'));
 	}
 
@@ -36,7 +37,11 @@ class UsersController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.create');
+		$user = new User();
+		$profiles = Profile::where('enabled',1)->lists('name','id');
+		
+		$this->layout->title = trans('modules/users.create_user');
+		$this->layout->content = View::make('users.create', compact('user','profiles'));
 	}
 
 	/**
@@ -46,20 +51,13 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, User::$rules);
+		$user = new User(Input::all());
 
-		if ($validation->passes())
-		{
-			$this->user->create($input);
-
-			return Redirect::route('users.index');
+		if($user->save()){
+			return Redirect::route('users.index')->with('success', trans('modules/users.user_created_successful'));
+		}else{
+			return Redirect::route('users.create')->withInput()->withErrors($user->errors());
 		}
-
-		return Redirect::route('users.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -70,9 +68,12 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$user = $this->user->findOrFail($id);
-
-		return View::make('users.show', compact('user'));
+		$user = User::find($id);
+		
+		if(empty($user)){
+			return Redirect::route('users.index');
+		}
+		$this->layout->content = View::make('users.show', compact('user'));
 	}
 
 	/**
@@ -83,14 +84,8 @@ class UsersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$user = $this->user->find($id);
-
-		if (is_null($user))
-		{
-			return Redirect::route('users.index');
-		}
-
-		return View::make('users.edit', compact('user'));
+		$user = User::findOrFail($id);
+		$this->layout->content = View::make('users.edit', compact('user'));
 	}
 
 	/**

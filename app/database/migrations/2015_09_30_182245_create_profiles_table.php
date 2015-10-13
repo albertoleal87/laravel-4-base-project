@@ -14,7 +14,7 @@ class CreateProfilesTable extends Migration {
 	{
 		Schema::create('profiles', function(Blueprint $table) {
 			$table->increments('id');
-			$table->boolean('enable')->default(1);
+			$table->boolean('enabled')->default(1);
 			$table->string('name')->unique();
 			$table->text('description')->nullable();
 			$table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
