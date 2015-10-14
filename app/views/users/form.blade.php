@@ -40,9 +40,11 @@
 	</div>
 </div>
 
-<div class="form-group">
-	{{ Form::label('password', trans('users.field_password'), array('class'=>'col-md-2 control-label')) }}
-	<div class="col-sm-10">
-		{{ Form::text('password', $user->password, array('class'=>'form-control', 'placeholder'=>trans('users.field_password'))) }}
+@if(Route::currentRouteName() == 'usuarios.create')
+	<div class="form-group">
+		{{ Form::label('password', trans('users.field_password'), array('class'=>'col-md-2 control-label')) }}
+		<div class="col-sm-10">
+			{{ Form::text('password', $user->password, array('class'=>'form-control', 'placeholder'=>trans('users.field_password'))) }}
+		</div>
 	</div>
-</div>
+@endif

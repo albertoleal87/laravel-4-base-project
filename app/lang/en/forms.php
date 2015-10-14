@@ -8,9 +8,9 @@ return array(
 	'active' => 'Active',
 	'inactive' => 'Inactive',
 
-	'show_register' => 'Show register',
-	'edit_register' => 'Edit register',
-	'delete_register' => 'Delete register',
+	'show_register' => 'Show',
+	'edit_register' => 'Edit',
+	'delete_register' => 'Delete',
 
 	'confirm_delete_title' => 'Confirm delete',
 	'confirm_delete_message' => 'Are you sure you want to delete this record?',
@@ -19,8 +19,8 @@ return array(
 
 	'login_user_inactive' => 'The user is inactive.',
 	'login_profile_inactive' => 'The user profile is inactive.',
-	'login_welcome' => 'Welcome :user_name',
+	'login_welcome' => 'Welcome :user_name.',
 	'login_error' => 'The data provided are incorrect',
-	'login_good_bay' => 'See you later!!!',
+	'login_good_bay' => 'See you later.',
 
 );

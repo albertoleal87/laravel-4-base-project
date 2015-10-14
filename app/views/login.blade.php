@@ -38,7 +38,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										{{ Form::label('lang', 'Lang:', array('class' => 'col-sm-3 control-label')); }}
+										{{ Form::label('lang', 'Language:', array('class' => 'col-sm-3 control-label')); }}
 										<div class="col-sm-9">
 											{{ Form::select('lang', array('en'=>'English', 'es' => 'Spanish'), false, array('class' => 'form-control' ) ); }}
 										</div>

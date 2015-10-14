@@ -39,7 +39,8 @@ class UsersController extends BaseController {
 	public function store()
 	{
 		$user = new User(Input::all());
-
+		$user->password = Hash::make(Input::get('password'));
+		
 		if($user->save()){
 			return Redirect::route('users.index')->with('success', trans('users.user_created_successful'));
 		}else{

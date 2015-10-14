@@ -8,9 +8,9 @@ return array(
 	'active' => 'Activo',
 	'inactive' => 'Inactivo',
 
-	'show_register' => 'Ver registro',
-	'edit_register' => 'Editar registro',
-	'delete_register' => 'Eliminar registro',
+	'show_register' => 'Ver',
+	'edit_register' => 'Editar',
+	'delete_register' => 'Eliminar',
 
 	'confirm_delete_title' => 'Confirmar eliminar',
 	'confirm_delete_message' => '¿Estás seguro que deseas eliminar este registro?',
@@ -19,8 +19,8 @@ return array(
 
 	'login_user_inactive' => 'El usuario se encuentra inactivo.',
 	'login_profile_inactive' => 'El perfil del usuario se encuentra inactivo.',
-	'login_welcome' => 'Bienvenido :user_name !!!',
+	'login_welcome' => 'Bienvenido :user_name.',
 	'login_error' => 'No se puede acceder con los datos proporcionados',
-	'login_good_bay' => 'Hasta luego!!!',
+	'login_good_bay' => 'Hasta luego.',
 
 );

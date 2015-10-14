@@ -10,7 +10,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	use UserTrait, RemindableTrait;
 
 	protected $table = 'users';
-
+	
 	protected $fillable = array('enabled','profile_id','name','last_name','mother_last_name','email','password');
 	
 	public static $rules = array(
