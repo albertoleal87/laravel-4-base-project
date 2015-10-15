@@ -85,7 +85,7 @@
 		$('[title]').tooltip();
 
 		// asi homologamos los data-table
-		$('.data-table').addClass('table-striped table-hover');
+		$('.data-table').addClass('table table-striped table-hover');
 
 		// convertir los que tengan la clase data-table a DataTable
 		if(app.lang == 'es'){

@@ -15,21 +15,23 @@ return array(
 	'user_deleted_error' => 'An error occurred while trying to delete user.',
 
 	// fields
-	'field_id' => 'Id',
-	'field_enabled' => 'Enabled',
-	'field_profile_id' => 'Profile',
-	'field_name' => 'Name',
-	'field_last_name' => 'Last name',
-	'field_mother_last_name' => 'Mother last name',
-	'field_email' => 'E-mail',
-	'field_password' => 'Password',
-	'field_options' => 'Options',
+	'id' => 'Id',
+	'enabled' => 'Enabled',
+	'profile_id' => 'Profile',
+	'name' => 'Name',
+	'last_name' => 'Last name',
+	'mother_last_name' => 'Mother last name',
+	'email' => 'E-mail',
+	'password' => 'Password',
+	'options' => 'Options',
 
 	// validations
 	'name_required' => 'The name field is required.',
 	'last_name_required' => 'The paternal surname field is required.',
 	'mother_last_name_required' => 'The native name field is required.',
 	'email_required' => 'The email field is required.',
+	'email_email' => 'The email field must be a valid email.',
+	'email_unique' => 'A user already exists with this email.',
 	'password_required' => 'The password field is required.',
 	
 );

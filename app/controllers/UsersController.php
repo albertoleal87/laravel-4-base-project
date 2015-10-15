@@ -87,8 +87,9 @@ class UsersController extends BaseController {
 	public function update($id)
 	{	
 		$user = User::findOrFail($id);
+		$user->fill(Input::all());
 
-		if($user->update(Input::all())){
+		if($user->updateUniques()){
 			return Redirect::route('users.index')->with('success', trans('users.user_updated_successful'));
 		}else{
 			return Redirect::route('users.edit', $id)->withInput()->withErrors($user->errors());

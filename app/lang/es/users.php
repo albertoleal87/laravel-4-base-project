@@ -15,21 +15,23 @@ return array(
 	'user_deleted_error' => 'Ocurrio un error al intentar eliminar el usuario.',
 
 	// fields
-	'field_id' => 'Id',
-	'field_enabled' => 'Activo',
-	'field_profile_id' => 'Perfil',
-	'field_name' => 'Nombre',
-	'field_last_name' => 'Apellido paterno',
-	'field_mother_last_name' => 'Apellido materno',
-	'field_email' => 'Correo',
-	'field_password' => 'Contraseña',
-	'field_options' => 'Opciones',
+	'id' => 'Id',
+	'enabled' => 'Activo',
+	'profile_id' => 'Perfil',
+	'name' => 'Nombre',
+	'last_name' => 'Apellido paterno',
+	'mother_last_name' => 'Apellido materno',
+	'email' => 'Correo',
+	'password' => 'Contraseña',
+	'options' => 'Opciones',
 
 	// validations
 	'name_required' => 'El campo nombre es requerido.',
 	'last_name_required' => 'El campo apellido paterno es requerido.',
 	'mother_last_name_required' => 'El campo apellido materno es requerido.',
 	'email_required' => 'El campo correo es requerido.',
+	'email_email' => 'El campo correo debe ser un correo valido.',
+	'email_unique' => 'Ya existe un usuario con este correo.',
 	'password_required' => 'El campo contraseña es requerido.',
 	
 );
