@@ -1,10 +1,12 @@
 <?php
 
-class Action extends Eloquent {
+class Action extends Ardent {
+
+	protected $fillable = array();
 	protected $guarded = array();
 
 	public static $rules = array(
-		'enable' => 'required',
+		'enabled' => 'required',
 		'name' => 'required',
 		'description' => 'required'
 	);

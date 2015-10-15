@@ -1,19 +1,15 @@
-@extends('layouts.scaffold')
-
-@section('main')
-
-<h1>All Settings</h1>
-
-<p>{{ link_to_route('settings.create', 'Add New Setting', null, array('class' => 'btn btn-lg btn-success')) }}</p>
-
-@if ($settings->count())
-	<table class="table table-striped">
+<div class="row">
+	{{ Form::btn_create( URL::route('settings.create'), 'Create setting' ) }}
+</div>
+<br>	
+<div class="row table-responsive">
+	<table class="table data-table">
 		<thead>
 			<tr>
 				<th>Key</th>
 				<th>Value</th>
 				<th>Description</th>
-				<th>&nbsp;</th>
+				<th>Options</th>
 			</tr>
 		</thead>
 
@@ -23,18 +19,16 @@
 					<td>{{{ $setting->key }}}</td>
 					<td>{{{ $setting->value }}}</td>
 					<td>{{{ $setting->description }}}</td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('settings.destroy', $setting->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('settings.edit', 'Edit', array($setting->id), array('class' => 'btn btn-info')) }}
-                    </td>
+
+					<td>
+						{{ Form::open( ['route'=>['settings.destroy', $setting->id], 'method' => 'DELETE'] ) }}
+							{{ Form::btn_show( URL::route('settings.show', $setting->id ) ) }}
+							{{ Form::btn_edit( URL::route('settings.edit', $setting->id ) ) }}
+							{{ Form::btn_delete( URL::route('settings.destroy',$setting->id)  ) }}
+						{{ Form::close() }}
+					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
-@else
-	There are no settings
-@endif
-
-@stop
+</div>

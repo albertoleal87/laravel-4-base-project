@@ -1,40 +1,34 @@
-@extends('layouts.scaffold')
-
-@section('main')
-
-<h1>All Profile_actions</h1>
-
-<p>{{ link_to_route('profile_actions.create', 'Add New Profile_action', null, array('class' => 'btn btn-lg btn-success')) }}</p>
-
-@if ($profile_actions->count())
-	<table class="table table-striped">
+<div class="row">
+	{{ Form::btn_create( URL::route('profile_actions.create'), 'Create profile_action' ) }}
+</div>
+<br>	
+<div class="row table-responsive">
+	<table class="table data-table">
 		<thead>
 			<tr>
-				<th>Enable</th>
+				<th>Enabled</th>
 				<th>Profile_id</th>
 				<th>Action_id</th>
-				<th>&nbsp;</th>
+				<th>Options</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			@foreach ($profile_actions as $profile_action)
 				<tr>
-					<td>{{{ $profile_action->enable }}}</td>
+					<td>{{{ $profile_action->enabled }}}</td>
 					<td>{{{ $profile_action->profile_id }}}</td>
 					<td>{{{ $profile_action->action_id }}}</td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('profile_actions.destroy', $profile_action->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('profile_actions.edit', 'Edit', array($profile_action->id), array('class' => 'btn btn-info')) }}
-                    </td>
+
+					<td>
+						{{ Form::open( ['route'=>['profile_actions.destroy', $profile_action->id], 'method' => 'DELETE'] ) }}
+							{{ Form::btn_show( URL::route('profile_actions.show', $profile_action->id ) ) }}
+							{{ Form::btn_edit( URL::route('profile_actions.edit', $profile_action->id ) ) }}
+							{{ Form::btn_delete( URL::route('profile_actions.destroy',$profile_action->id)  ) }}
+						{{ Form::close() }}
+					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
-@else
-	There are no profile_actions
-@endif
-
-@stop
+</div>

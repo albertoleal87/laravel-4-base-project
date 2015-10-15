@@ -1,53 +1,33 @@
-@extends('layouts.scaffold')
+{{ Form::model($setting, ['route' => ['settings.update', $setting->id], 'class' => 'form-horizontal', 'method' => 'PUT'] ) }}
 
-@section('main')
-
-<div class="row">
-    <div class="col-md-10 col-md-offset-2">
-        <h1>Edit Setting</h1>
-
-        @if ($errors->any())
-        	<div class="alert alert-danger">
-        	    <ul>
-                    {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-                </ul>
-        	</div>
-        @endif
-    </div>
-</div>
-
-{{ Form::model($setting, array('class' => 'form-horizontal', 'method' => 'PUT', 'route' => array('settings.update', $setting->id))) }}
-
-        <div class="form-group">
+	        <div class="form-group">
             {{ Form::label('key', 'Key:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('key', Input::old('key'), array('class'=>'form-control', 'placeholder'=>'Key')) }}
+              {{ Form::text('key', null, array('class'=>'form-control', 'placeholder'=>'Key')) }}
             </div>
         </div>
 
         <div class="form-group">
             {{ Form::label('value', 'Value:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('value', Input::old('value'), array('class'=>'form-control', 'placeholder'=>'Value')) }}
+              {{ Form::text('value', null, array('class'=>'form-control', 'placeholder'=>'Value')) }}
             </div>
         </div>
 
         <div class="form-group">
             {{ Form::label('description', 'Description:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::textarea('description', Input::old('description'), array('class'=>'form-control', 'placeholder'=>'Description')) }}
+              {{ Form::textarea('description', null, array('class'=>'form-control', 'placeholder'=>'Description')) }}
             </div>
         </div>
 
 
-<div class="form-group">
-    <label class="col-sm-2 control-label">&nbsp;</label>
-    <div class="col-sm-10">
-      {{ Form::submit('Update', array('class' => 'btn btn-lg btn-primary')) }}
-      {{ link_to_route('settings.show', 'Cancel', $setting->id, array('class' => 'btn btn-lg btn-default')) }}
-    </div>
-</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">&nbsp;</label>
+		<div class="col-sm-10">
+			{{ Form::btn_save() }}
+			{{ Form::btn_cancel(URL::route('settings.index')) }}
+		</div>
+	</div>
 
 {{ Form::close() }}
-
-@stop

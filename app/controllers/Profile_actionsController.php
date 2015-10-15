@@ -2,18 +2,7 @@
 
 class Profile_actionsController extends BaseController {
 
-	/**
-	 * Profile_action Repository
-	 *
-	 * @var Profile_action
-	 */
-	protected $profile_action;
-
-	public function __construct(Profile_action $profile_action)
-	{
-		$this->profile_action = $profile_action;
-		Parent::__construct();
-	}
+	protected $layout = 'layouts.main';
 
 	/**
 	 * Display a listing of the resource.
@@ -22,9 +11,10 @@ class Profile_actionsController extends BaseController {
 	 */
 	public function index()
 	{
-		$profile_actions = $this->profile_action->all();
-
-		return View::make('profile_actions.index', compact('profile_actions'));
+		$profile_actions = Profile_action::all();
+		
+		$this->layout->title = 'profile_actions';
+		$this->layout->content = View::make('profile_actions.index', compact('profile_actions'));
 	}
 
 	/**
@@ -34,7 +24,10 @@ class Profile_actionsController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('profile_actions.create');
+		$profile_action = new Profile_action();
+		
+		$this->layout->title = 'Create profile_actions';
+		$this->layout->content = View::make('profile_actions.create', compact('profile_action'));
 	}
 
 	/**
@@ -44,20 +37,13 @@ class Profile_actionsController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Profile_action::$rules);
-
-		if ($validation->passes())
-		{
-			$this->profile_action->create($input);
-
-			return Redirect::route('profile_actions.index');
+		$profile_action = new Profile_action(Input::all());
+		
+		if($profile_action->save()){
+			return Redirect::route('profile_actions.index')->with('success', 'profile_action created successful');
+		}else{
+			return Redirect::route('profile_actions.create')->withInput()->withErrors($profile_action->errors());
 		}
-
-		return Redirect::route('profile_actions.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -68,9 +54,10 @@ class Profile_actionsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$profile_action = $this->profile_action->findOrFail($id);
-
-		return View::make('profile_actions.show', compact('profile_action'));
+		$profile_action = Profile_action::findOrFail($id);
+		
+		$this->layout->title = 'Show profile_action';
+		$this->layout->content = View::make('profile_actions.show', compact('profile_action'));
 	}
 
 	/**
@@ -81,14 +68,10 @@ class Profile_actionsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$profile_action = $this->profile_action->find($id);
+		$profile_action = Profile_action::findOrFail($id);
 
-		if (is_null($profile_action))
-		{
-			return Redirect::route('profile_actions.index');
-		}
-
-		return View::make('profile_actions.edit', compact('profile_action'));
+		$this->layout->title = 'Edit profile_action';
+		$this->layout->content = View::make('profile_actions.edit', compact('profile_action'));
 	}
 
 	/**
@@ -99,21 +82,13 @@ class Profile_actionsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Profile_action::$rules);
+		$profile_action = Profile_action::findOrFail($id);
 
-		if ($validation->passes())
-		{
-			$profile_action = $this->profile_action->find($id);
-			$profile_action->update($input);
-
-			return Redirect::route('profile_actions.show', $id);
+		if($profile_action->update(Input::all())){
+			return Redirect::route('profile_actions.index')->with('success', 'profile_action updated successful');
+		}else{
+			return Redirect::route('profile_actions.edit', $id)->withInput()->withErrors($profile_action->errors());
 		}
-
-		return Redirect::route('profile_actions.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -124,9 +99,11 @@ class Profile_actionsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->profile_action->find($id)->delete();
-
-		return Redirect::route('profile_actions.index');
+		if(Profile_action::destroy($id)){
+			return Redirect::route('profile_actions.index')->with('success', 'profile_action deleted successful');
+		}else{
+			return Redirect::route('profile_actions.index')->with('danger', 'An error occurred while trying to delete the profile_action');
+		}
 	}
 
 }

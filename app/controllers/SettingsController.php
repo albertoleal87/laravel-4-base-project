@@ -2,18 +2,7 @@
 
 class SettingsController extends BaseController {
 
-	/**
-	 * Setting Repository
-	 *
-	 * @var Setting
-	 */
-	protected $setting;
-
-	public function __construct(Setting $setting)
-	{
-		$this->setting = $setting;
-		Parent::__construct();
-	}
+	protected $layout = 'layouts.main';
 
 	/**
 	 * Display a listing of the resource.
@@ -22,9 +11,10 @@ class SettingsController extends BaseController {
 	 */
 	public function index()
 	{
-		$settings = $this->setting->all();
-
-		return View::make('settings.index', compact('settings'));
+		$settings = Setting::all();
+		
+		$this->layout->title = 'settings';
+		$this->layout->content = View::make('settings.index', compact('settings'));
 	}
 
 	/**
@@ -34,7 +24,10 @@ class SettingsController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('settings.create');
+		$setting = new Setting();
+		
+		$this->layout->title = 'Create settings';
+		$this->layout->content = View::make('settings.create', compact('setting'));
 	}
 
 	/**
@@ -44,20 +37,13 @@ class SettingsController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Setting::$rules);
-
-		if ($validation->passes())
-		{
-			$this->setting->create($input);
-
-			return Redirect::route('settings.index');
+		$setting = new Setting(Input::all());
+		
+		if($setting->save()){
+			return Redirect::route('settings.index')->with('success', 'setting created successful');
+		}else{
+			return Redirect::route('settings.create')->withInput()->withErrors($setting->errors());
 		}
-
-		return Redirect::route('settings.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -68,9 +54,10 @@ class SettingsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$setting = $this->setting->findOrFail($id);
-
-		return View::make('settings.show', compact('setting'));
+		$setting = Setting::findOrFail($id);
+		
+		$this->layout->title = 'Show setting';
+		$this->layout->content = View::make('settings.show', compact('setting'));
 	}
 
 	/**
@@ -81,14 +68,10 @@ class SettingsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$setting = $this->setting->find($id);
+		$setting = Setting::findOrFail($id);
 
-		if (is_null($setting))
-		{
-			return Redirect::route('settings.index');
-		}
-
-		return View::make('settings.edit', compact('setting'));
+		$this->layout->title = 'Edit setting';
+		$this->layout->content = View::make('settings.edit', compact('setting'));
 	}
 
 	/**
@@ -99,21 +82,13 @@ class SettingsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Setting::$rules);
+		$setting = Setting::findOrFail($id);
 
-		if ($validation->passes())
-		{
-			$setting = $this->setting->find($id);
-			$setting->update($input);
-
-			return Redirect::route('settings.show', $id);
+		if($setting->update(Input::all())){
+			return Redirect::route('settings.index')->with('success', 'setting updated successful');
+		}else{
+			return Redirect::route('settings.edit', $id)->withInput()->withErrors($setting->errors());
 		}
-
-		return Redirect::route('settings.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -124,9 +99,11 @@ class SettingsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->setting->find($id)->delete();
-
-		return Redirect::route('settings.index');
+		if(Setting::destroy($id)){
+			return Redirect::route('settings.index')->with('success', 'setting deleted successful');
+		}else{
+			return Redirect::route('settings.index')->with('danger', 'An error occurred while trying to delete the setting');
+		}
 	}
 
 }

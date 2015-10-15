@@ -2,17 +2,7 @@
 
 class ProfilesController extends BaseController {
 
-	/**
-	 * Profile Repository
-	 *
-	 * @var Profile
-	 */
-	protected $profile;
-
-	public function __construct(Profile $profile)
-	{
-		$this->profile = $profile;
-	}
+	protected $layout = 'layouts.main';
 
 	/**
 	 * Display a listing of the resource.
@@ -21,9 +11,10 @@ class ProfilesController extends BaseController {
 	 */
 	public function index()
 	{
-		$profiles = $this->profile->all();
-
-		return View::make('profiles.index', compact('profiles'));
+		$profiles = Profile::all();
+		
+		$this->layout->title = 'profiles';
+		$this->layout->content = View::make('profiles.index', compact('profiles'));
 	}
 
 	/**
@@ -33,7 +24,10 @@ class ProfilesController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('profiles.create');
+		$profile = new Profile();
+		
+		$this->layout->title = 'Create profiles';
+		$this->layout->content = View::make('profiles.create', compact('profile'));
 	}
 
 	/**
@@ -43,20 +37,13 @@ class ProfilesController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Profile::$rules);
-
-		if ($validation->passes())
-		{
-			$this->profile->create($input);
-
-			return Redirect::route('profiles.index');
+		$profile = new Profile(Input::all());
+		
+		if($profile->save()){
+			return Redirect::route('profiles.index')->with('success', 'profile created successful');
+		}else{
+			return Redirect::route('profiles.create')->withInput()->withErrors($profile->errors());
 		}
-
-		return Redirect::route('profiles.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -67,9 +54,10 @@ class ProfilesController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$profile = $this->profile->findOrFail($id);
-
-		return View::make('profiles.show', compact('profile'));
+		$profile = Profile::findOrFail($id);
+		
+		$this->layout->title = 'Show profile';
+		$this->layout->content = View::make('profiles.show', compact('profile'));
 	}
 
 	/**
@@ -80,14 +68,10 @@ class ProfilesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$profile = $this->profile->find($id);
+		$profile = Profile::findOrFail($id);
 
-		if (is_null($profile))
-		{
-			return Redirect::route('profiles.index');
-		}
-
-		return View::make('profiles.edit', compact('profile'));
+		$this->layout->title = 'Edit profile';
+		$this->layout->content = View::make('profiles.edit', compact('profile'));
 	}
 
 	/**
@@ -98,21 +82,13 @@ class ProfilesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Profile::$rules);
+		$profile = Profile::findOrFail($id);
 
-		if ($validation->passes())
-		{
-			$profile = $this->profile->find($id);
-			$profile->update($input);
-
-			return Redirect::route('profiles.show', $id);
+		if($profile->update(Input::all())){
+			return Redirect::route('profiles.index')->with('success', 'profile updated successful');
+		}else{
+			return Redirect::route('profiles.edit', $id)->withInput()->withErrors($profile->errors());
 		}
-
-		return Redirect::route('profiles.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -123,9 +99,11 @@ class ProfilesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->profile->find($id)->delete();
-
-		return Redirect::route('profiles.index');
+		if(Profile::destroy($id)){
+			return Redirect::route('profiles.index')->with('success', 'profile deleted successful');
+		}else{
+			return Redirect::route('profiles.index')->with('danger', 'An error occurred while trying to delete the profile');
+		}
 	}
 
 }

@@ -2,18 +2,7 @@
 
 class ActionsController extends BaseController {
 
-	/**
-	 * Action Repository
-	 *
-	 * @var Action
-	 */
-	protected $action;
-
-	public function __construct(Action $action)
-	{
-		$this->action = $action;
-		Parent::__construct();
-	}
+	protected $layout = 'layouts.main';
 
 	/**
 	 * Display a listing of the resource.
@@ -22,9 +11,10 @@ class ActionsController extends BaseController {
 	 */
 	public function index()
 	{
-		$actions = $this->action->all();
-
-		return View::make('actions.index', compact('actions'));
+		$actions = Action::all();
+		
+		$this->layout->title = 'actions';
+		$this->layout->content = View::make('actions.index', compact('actions'));
 	}
 
 	/**
@@ -34,7 +24,10 @@ class ActionsController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('actions.create');
+		$action = new Action();
+		
+		$this->layout->title = 'Create actions';
+		$this->layout->content = View::make('actions.create', compact('action'));
 	}
 
 	/**
@@ -44,20 +37,13 @@ class ActionsController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$validation = Validator::make($input, Action::$rules);
-
-		if ($validation->passes())
-		{
-			$this->action->create($input);
-
-			return Redirect::route('actions.index');
+		$action = new Action(Input::all());
+		
+		if($action->save()){
+			return Redirect::route('actions.index')->with('success', 'action created successful');
+		}else{
+			return Redirect::route('actions.create')->withInput()->withErrors($action->errors());
 		}
-
-		return Redirect::route('actions.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -68,9 +54,10 @@ class ActionsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$action = $this->action->findOrFail($id);
-
-		return View::make('actions.show', compact('action'));
+		$action = Action::findOrFail($id);
+		
+		$this->layout->title = 'Show action';
+		$this->layout->content = View::make('actions.show', compact('action'));
 	}
 
 	/**
@@ -81,14 +68,10 @@ class ActionsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$action = $this->action->find($id);
+		$action = Action::findOrFail($id);
 
-		if (is_null($action))
-		{
-			return Redirect::route('actions.index');
-		}
-
-		return View::make('actions.edit', compact('action'));
+		$this->layout->title = 'Edit action';
+		$this->layout->content = View::make('actions.edit', compact('action'));
 	}
 
 	/**
@@ -99,21 +82,13 @@ class ActionsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Action::$rules);
+		$action = Action::findOrFail($id);
 
-		if ($validation->passes())
-		{
-			$action = $this->action->find($id);
-			$action->update($input);
-
-			return Redirect::route('actions.show', $id);
+		if($action->update(Input::all())){
+			return Redirect::route('actions.index')->with('success', 'action updated successful');
+		}else{
+			return Redirect::route('actions.edit', $id)->withInput()->withErrors($action->errors());
 		}
-
-		return Redirect::route('actions.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -124,9 +99,11 @@ class ActionsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->action->find($id)->delete();
-
-		return Redirect::route('actions.index');
+		if(Action::destroy($id)){
+			return Redirect::route('actions.index')->with('success', 'action deleted successful');
+		}else{
+			return Redirect::route('actions.index')->with('danger', 'An error occurred while trying to delete the action');
+		}
 	}
 
 }

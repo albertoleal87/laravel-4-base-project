@@ -1,9 +1,10 @@
 <?php
 
-class Setting extends Eloquent {
+class Setting extends Ardent {
 
 	protected $table = 'settings';
 
+	protected $fillable = array();
 	protected $guarded = array();
 
 	public static $rules = array(

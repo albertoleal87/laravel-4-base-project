@@ -1,33 +1,36 @@
-@extends('layouts.scaffold')
+{{ Form::model($setting, ['class' => 'form-horizontal'] ) }}
 
-@section('main')
+	        <div class="form-group">
+            {{ Form::label('key', 'Key:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+              {{ Form::text('key', null, array('class'=>'form-control', 'placeholder'=>'Key')) }}
+            </div>
+        </div>
 
-<h1>Show Setting</h1>
+        <div class="form-group">
+            {{ Form::label('value', 'Value:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+              {{ Form::text('value', null, array('class'=>'form-control', 'placeholder'=>'Value')) }}
+            </div>
+        </div>
 
-<p>{{ link_to_route('settings.index', 'Return to All settings', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
+        <div class="form-group">
+            {{ Form::label('description', 'Description:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+              {{ Form::textarea('description', null, array('class'=>'form-control', 'placeholder'=>'Description')) }}
+            </div>
+        </div>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Key</th>
-				<th>Value</th>
-				<th>Description</th>
-		</tr>
-	</thead>
 
-	<tbody>
-		<tr>
-			<td>{{{ $setting->key }}}</td>
-					<td>{{{ $setting->value }}}</td>
-					<td>{{{ $setting->description }}}</td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('settings.destroy', $setting->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('settings.edit', 'Edit', array($setting->id), array('class' => 'btn btn-info')) }}
-                    </td>
-		</tr>
-	</tbody>
-</table>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">&nbsp;</label>
+		<div class="col-sm-10">
+			{{ Form::btn_return(URL::previous()) }}
+		</div>
+	</div>
 
-@stop
+{{ Form::close() }}
+<script type="text/javascript">
+	disable_inputs();
+	$('[placeholder]').removeAttr('placeholder');
+</script>

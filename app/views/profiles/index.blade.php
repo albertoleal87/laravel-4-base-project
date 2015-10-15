@@ -1,40 +1,34 @@
-@extends('layouts.scaffold')
-
-@section('main')
-
-<h1>All Profiles</h1>
-
-<p>{{ link_to_route('profiles.create', 'Add New Profile', null, array('class' => 'btn btn-lg btn-success')) }}</p>
-
-@if ($profiles->count())
-	<table class="table table-striped">
+<div class="row">
+	{{ Form::btn_create( URL::route('profiles.create'), 'Create profile' ) }}
+</div>
+<br>	
+<div class="row table-responsive">
+	<table class="table data-table">
 		<thead>
 			<tr>
-				<th>Enable</th>
+				<th>Enabled</th>
 				<th>Name</th>
 				<th>Description</th>
-				<th>&nbsp;</th>
+				<th>Options</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			@foreach ($profiles as $profile)
 				<tr>
-					<td>{{{ $profile->enable }}}</td>
+					<td>{{{ $profile->enabled }}}</td>
 					<td>{{{ $profile->name }}}</td>
 					<td>{{{ $profile->description }}}</td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('profiles.destroy', $profile->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('profiles.edit', 'Edit', array($profile->id), array('class' => 'btn btn-info')) }}
-                    </td>
+
+					<td>
+						{{ Form::open( ['route'=>['profiles.destroy', $profile->id], 'method' => 'DELETE'] ) }}
+							{{ Form::btn_show( URL::route('profiles.show', $profile->id ) ) }}
+							{{ Form::btn_edit( URL::route('profiles.edit', $profile->id ) ) }}
+							{{ Form::btn_delete( URL::route('profiles.destroy',$profile->id)  ) }}
+						{{ Form::close() }}
+					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
-@else
-	There are no profiles
-@endif
-
-@stop
+</div>

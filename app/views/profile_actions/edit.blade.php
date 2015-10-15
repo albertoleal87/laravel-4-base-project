@@ -1,53 +1,33 @@
-@extends('layouts.scaffold')
+{{ Form::model($profile_action, ['route' => ['profile_actions.update', $profile_action->id], 'class' => 'form-horizontal', 'method' => 'PUT'] ) }}
 
-@section('main')
-
-<div class="row">
-    <div class="col-md-10 col-md-offset-2">
-        <h1>Edit Profile_action</h1>
-
-        @if ($errors->any())
-        	<div class="alert alert-danger">
-        	    <ul>
-                    {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-                </ul>
-        	</div>
-        @endif
-    </div>
-</div>
-
-{{ Form::model($profile_action, array('class' => 'form-horizontal', 'method' => 'PUT', 'route' => array('profile_actions.update', $profile_action->id))) }}
-
-        <div class="form-group">
-            {{ Form::label('enable', 'Enable:', array('class'=>'col-md-2 control-label')) }}
+	        <div class="form-group">
+            {{ Form::label('enabled', 'Enabled:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::checkbox('enable') }}
+              {{ Form::checkbox('enabled') }}
             </div>
         </div>
 
         <div class="form-group">
             {{ Form::label('profile_id', 'Profile_id:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::input('number', 'profile_id', Input::old('profile_id'), array('class'=>'form-control')) }}
+              {{ Form::input('number', 'profile_id', null, array('class'=>'form-control')) }}
             </div>
         </div>
 
         <div class="form-group">
             {{ Form::label('action_id', 'Action_id:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::input('number', 'action_id', Input::old('action_id'), array('class'=>'form-control')) }}
+              {{ Form::input('number', 'action_id', null, array('class'=>'form-control')) }}
             </div>
         </div>
 
 
-<div class="form-group">
-    <label class="col-sm-2 control-label">&nbsp;</label>
-    <div class="col-sm-10">
-      {{ Form::submit('Update', array('class' => 'btn btn-lg btn-primary')) }}
-      {{ link_to_route('profile_actions.show', 'Cancel', $profile_action->id, array('class' => 'btn btn-lg btn-default')) }}
-    </div>
-</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">&nbsp;</label>
+		<div class="col-sm-10">
+			{{ Form::btn_save() }}
+			{{ Form::btn_cancel(URL::route('profile_actions.index')) }}
+		</div>
+	</div>
 
 {{ Form::close() }}
-
-@stop

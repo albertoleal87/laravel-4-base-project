@@ -1,33 +1,36 @@
-@extends('layouts.scaffold')
+{{ Form::model($action, ['class' => 'form-horizontal'] ) }}
 
-@section('main')
+	        <div class="form-group">
+            {{ Form::label('enabled', 'Enabled:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+              {{ Form::checkbox('enabled') }}
+            </div>
+        </div>
 
-<h1>Show Action</h1>
+        <div class="form-group">
+            {{ Form::label('name', 'Name:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+              {{ Form::text('name', null, array('class'=>'form-control', 'placeholder'=>'Name')) }}
+            </div>
+        </div>
 
-<p>{{ link_to_route('actions.index', 'Return to All actions', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
+        <div class="form-group">
+            {{ Form::label('description', 'Description:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+              {{ Form::textarea('description', null, array('class'=>'form-control', 'placeholder'=>'Description')) }}
+            </div>
+        </div>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Enable</th>
-				<th>Name</th>
-				<th>Description</th>
-		</tr>
-	</thead>
 
-	<tbody>
-		<tr>
-			<td>{{{ $action->enable }}}</td>
-					<td>{{{ $action->name }}}</td>
-					<td>{{{ $action->description }}}</td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('actions.destroy', $action->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('actions.edit', 'Edit', array($action->id), array('class' => 'btn btn-info')) }}
-                    </td>
-		</tr>
-	</tbody>
-</table>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">&nbsp;</label>
+		<div class="col-sm-10">
+			{{ Form::btn_return(URL::previous()) }}
+		</div>
+	</div>
 
-@stop
+{{ Form::close() }}
+<script type="text/javascript">
+	disable_inputs();
+	$('[placeholder]').removeAttr('placeholder');
+</script>
