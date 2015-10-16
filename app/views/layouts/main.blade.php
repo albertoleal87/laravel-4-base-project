@@ -8,12 +8,14 @@
 
 		{{ HTML::style('public/css/bootstrap.min.css') }}
 		{{ HTML::style('public/css/dataTables.bootstrap.min.css') }}
+		{{ HTML::style('public/css/bootstrap-switch.min.css') }}
 		{{ HTML::style('public/css/styles.css') }}
 
 		{{ HTML::script('public/js/jquery.min.js') }}
 		{{ HTML::script('public/js/bootstrap.min.js') }}
 		{{ HTML::script('public/js/jquery.dataTables.min.js') }}
 		{{ HTML::script('public/js/dataTables.bootstrap.min.js') }}
+		{{ HTML::script('public/js/bootstrap-switch.min.js') }}
 		{{ HTML::script('public/js/bootbox.min.js') }}
 
 		<?php include('public/js/scripts.php') ?>

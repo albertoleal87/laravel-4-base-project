@@ -44,7 +44,9 @@ Form::macro('btn_inactive', function(){
 	return "<button class='btn btn-xs btn-danger btn-block'><i class='glyphicon glyphicon-remove'></i> {$value}</button>";
 });
 
-
+Form::macro('bootstrap_switch', function($name, $value){
+	return Form::checkbox($name, 1, (bool)$value, ['class'=>'bootstrap-switch', 'data-on-color'=>'primary', 'data-off-color'=>'default', 'data-size'=>'small', 'data-on-text'=>'ON', 'data-off-text'=>'OFF' ] );
+});
 
 
 

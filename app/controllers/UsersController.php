@@ -40,7 +40,8 @@ class UsersController extends BaseController {
 	{
 		$user = new User(Input::all());
 		$user->password = Hash::make(Input::get('password'));
-		
+		$user->enabled = Input::get('enabled') == 1 ? 1 : 0 ;
+
 		if($user->save()){
 			return Redirect::route('users.index')->with('success', trans('users.user_created_successful'));
 		}else{
@@ -88,6 +89,7 @@ class UsersController extends BaseController {
 	{	
 		$user = User::findOrFail($id);
 		$user->fill(Input::all());
+		$user->enabled = Input::get('enabled') == 1 ? 1 : 0 ;
 
 		if($user->updateUniques()){
 			return Redirect::route('users.index')->with('success', trans('users.user_updated_successful'));

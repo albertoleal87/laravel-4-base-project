@@ -84,6 +84,9 @@
 		// convertir todos los title a tooltip
 		$('[title]').tooltip();
 
+		// convertir los checkbox a switch
+		$('.bootstrap-switch').bootstrapSwitch();
+
 		// asi homologamos los data-table
 		$('.data-table').addClass('table table-striped table-hover');
 

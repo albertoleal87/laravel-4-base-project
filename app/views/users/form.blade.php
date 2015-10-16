@@ -1,7 +1,7 @@
 <div class="form-group">
 	{{ Form::label('enabled', trans('users.enabled'), array('class'=>'col-md-2 control-label')) }}
 	<div class="col-sm-10">
-		{{ Form::select('enabled', ['1'=>'Yes','0'=>'No'], $user->enabled, ['class'=>'form-control']) }}
+		{{ Form::bootstrap_switch('enabled', $user->enabled) }}
 	</div>
 </div>
 
