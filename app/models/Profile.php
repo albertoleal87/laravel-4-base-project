@@ -6,10 +6,15 @@ class Profile extends Ardent {
 	protected $guarded = array();
 
 	public static $rules = array(
-		'enabled' => 'required',
-		'name' => 'required',
-		'description' => 'required'
+		'name' => 'required|unique:profiles,name,{id}',
 	);
+
+	public function beforeValidate(){
+		User::$customMessages = array(
+			'name.required' => trans('profiles.name_required'),
+			'name.unique' => trans('profiles.name_unique'),
+		);
+	}
 
 	public function actions(){
 		return $this->belongsToMany('Action', 'profile_actions', 'profile_id', 'action_id');

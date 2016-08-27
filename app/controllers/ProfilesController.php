@@ -13,7 +13,7 @@ class ProfilesController extends BaseController {
 	{
 		$profiles = Profile::all();
 		
-		$this->layout->title = 'profiles';
+		$this->layout->title = trans('profiles.title');
 		$this->layout->content = View::make('profiles.index', compact('profiles'));
 	}
 
@@ -26,7 +26,7 @@ class ProfilesController extends BaseController {
 	{
 		$profile = new Profile();
 		
-		$this->layout->title = 'Create profiles';
+		$this->layout->title = trans('profiles.create');
 		$this->layout->content = View::make('profiles.create', compact('profile'));
 	}
 
@@ -38,9 +38,10 @@ class ProfilesController extends BaseController {
 	public function store()
 	{
 		$profile = new Profile(Input::all());
+		$profile->enabled = Input::get('enabled') == 1 ? 1 : 0 ;
 		
 		if($profile->save()){
-			return Redirect::route('profiles.index')->with('success', 'profile created successful');
+			return Redirect::route('profiles.index')->with('success', trans('profiles.created_successful') );
 		}else{
 			return Redirect::route('profiles.create')->withInput()->withErrors($profile->errors());
 		}
@@ -56,7 +57,7 @@ class ProfilesController extends BaseController {
 	{
 		$profile = Profile::findOrFail($id);
 		
-		$this->layout->title = 'Show profile';
+		$this->layout->title = trans('profiles.show');
 		$this->layout->content = View::make('profiles.show', compact('profile'));
 	}
 
@@ -70,7 +71,7 @@ class ProfilesController extends BaseController {
 	{
 		$profile = Profile::findOrFail($id);
 
-		$this->layout->title = 'Edit profile';
+		$this->layout->title = trans('profiles.edit');
 		$this->layout->content = View::make('profiles.edit', compact('profile'));
 	}
 
@@ -83,9 +84,11 @@ class ProfilesController extends BaseController {
 	public function update($id)
 	{
 		$profile = Profile::findOrFail($id);
+		$profile->fill(Input::all());
+		$profile->enabled = Input::get('enabled') == 1 ? 1 : 0 ;
 
-		if($profile->update(Input::all())){
-			return Redirect::route('profiles.index')->with('success', 'profile updated successful');
+		if($profile->updateUniques()){
+			return Redirect::route('profiles.index')->with('success', trans('profiles.updated_successful') );
 		}else{
 			return Redirect::route('profiles.edit', $id)->withInput()->withErrors($profile->errors());
 		}
@@ -100,9 +103,9 @@ class ProfilesController extends BaseController {
 	public function destroy($id)
 	{
 		if(Profile::destroy($id)){
-			return Redirect::route('profiles.index')->with('success', 'profile deleted successful');
+			return Redirect::route('profiles.index')->with('success', trans('profiles.deleted_successful') );
 		}else{
-			return Redirect::route('profiles.index')->with('danger', 'An error occurred while trying to delete the profile');
+			return Redirect::route('profiles.index')->with('danger', trans('profiles.deleted_error') );
 		}
 	}
 

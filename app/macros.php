@@ -5,17 +5,17 @@ Form::macro('btn_create', function($url, $value){
 });
 
 Form::macro('btn_show', function($url){
-	$title = trans('forms.show_register');
+	$title = trans('forms.show');
 	return "<a href='{$url}' class='btn btn-xs btn-info' title='{$title}'><i class='glyphicon glyphicon-search'></i></a>";
 });
 
 Form::macro('btn_edit', function($url){
-	$title = trans('forms.edit_register');
+	$title = trans('forms.edit');
 	return "<a href='{$url}' class='btn btn-xs btn-primary' title='{$title}'><i class='glyphicon glyphicon-pencil'></i></a>";
 });
 
 Form::macro('btn_delete', function($url){
-	$title = trans('forms.delete_register');
+	$title = trans('forms.delete');
 	return "<a class='btn btn-xs btn-danger confirm-delete' title='{$title}'><i class='glyphicon glyphicon-trash'></i></a>";
 });
 

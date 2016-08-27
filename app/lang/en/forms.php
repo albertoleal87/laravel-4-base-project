@@ -8,9 +8,11 @@ return array(
 	'active' => 'Active',
 	'inactive' => 'Inactive',
 
-	'show_register' => 'Show',
-	'edit_register' => 'Edit',
-	'delete_register' => 'Delete',
+	'options' => 'Options',
+	
+	'show' => 'Show',
+	'edit' => 'Edit',
+	'delete' => 'Delete',
 
 	'confirm_delete_title' => 'Confirm delete',
 	'confirm_delete_message' => 'Are you sure you want to delete this record?',
