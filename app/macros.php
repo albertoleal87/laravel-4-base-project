@@ -48,5 +48,8 @@ Form::macro('bootstrap_switch', function($name, $value){
 	return Form::checkbox($name, 1, (bool)$value, ['class'=>'bootstrap-switch', 'data-on-color'=>'primary', 'data-off-color'=>'default', 'data-size'=>'small', 'data-on-text'=>'ON', 'data-off-text'=>'OFF' ] );
 });
 
+Form::macro('side_menu_item', function($url, $class, $icon, $text){
+	return "<li><a href='{$url}' class='{$class}'><i class='{$icon}'></i> {$text}</a></li>";
+});
 
 

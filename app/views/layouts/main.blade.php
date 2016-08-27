@@ -243,40 +243,18 @@
 				<div class="navbar-default sidebar" role="navigation">
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<li>
-								<a href="{{ URL::to('/') }}" class="{{ Request::segment(1) == '' ? 'active' : ''}}">
-									<i class="glyphicon glyphicon-dashboard"></i> {{ trans('menu.dashboard') }}
-								</a>
-							</li>
-							<li>
-								<a href="{{ URL::to('users') }}" class="{{ Request::segment(1) == 'users' ? 'active' : ''}}">
-									<i class="glyphicon glyphicon-user"></i> {{ trans('menu.users') }}
-								</a>
-							</li>
+							{{ Form::side_menu_item(URL::to('/'),Request::segment(1) == '' ? 'active':'',"glyphicon glyphicon-dashboard",trans('menu.dashboard')); }}
+							{{ Form::side_menu_item(URL::to('users'),Request::segment(1) == 'users' ? 'active':'',"glyphicon glyphicon-user",trans('menu.users')); }}
 							<li>
 								<a class="toggle-left-menu"><i class="glyphicon glyphicon-list"></i> {{ trans('menu.profiles_actions_main') }} <span class="glyphicon glyphicon-menu-down pull-right"></span></a>
 								<ul class="nav nav-second-level toggle-item" style="display:none">
-									<li>
-										<a href="{{ URL::to('profiles') }}"> {{ trans('menu.profiles') }}</a>
-									</li>
-									<li>
-										<a href="{{ URL::to('actions') }}"> {{ trans('menu.actions') }}</a>
-									</li>
-									<li>
-										<a href="{{ URL::to('profile_actions') }}"> {{ trans('menu.profile_actions_sub') }}</a>
-									</li>
+									{{ Form::side_menu_item(URL::to('profiles'),Request::segment(1) == 'profiles' ? 'active':'',"",trans('menu.profiles')); }}
+									{{ Form::side_menu_item(URL::to('actions'),Request::segment(1) == 'actions' ? 'active':'',"",trans('menu.actions')); }}
+									{{ Form::side_menu_item(URL::to('profile_actions'),Request::segment(1) == 'profile_actions' ? 'active':'',"",trans('menu.profile_actions_sub')); }}
 								</ul>
 							</li>
-							<li>
-								<a href="{{ URL::to('settings') }}" class="{{ Request::segment(1) == 'settings' ? 'active' : ''}}">
-									<i class="glyphicon glyphicon-cog"></i> {{ trans('menu.settings') }}
-								</a>
-							</li>
-							<li>
-								<a href="{{ URL::to('logout') }}">
-									<i class="glyphicon glyphicon-log-out"></i> {{ trans('menu.logout') }}
-								</a>
-							</li>
+							{{ Form::side_menu_item(URL::to('settings'),Request::segment(1) == 'settings' ? 'active':'',"glyphicon glyphicon-cog",trans('menu.settings')); }}
+							{{ Form::side_menu_item(URL::to('logout'),'',"glyphicon glyphicon-log-out",trans('menu.logout')); }}
 						</ul>
 					</div>
 					<!-- /.sidebar-collapse -->
