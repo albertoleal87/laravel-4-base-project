@@ -1,22 +1,30 @@
 <div class="row">
-	{{ Form::btn_create( URL::route('profiles.create'), 'Create profile' ) }}
+	{{ Form::btn_create( URL::route('profiles.create'), trans('profiles.create') ) }}
 </div>
 <br>	
 <div class="row table-responsive">
 	<table class="table data-table">
 		<thead>
 			<tr>
-				<th>Enabled</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Options</th>
+				<th class="col-md-1">{{ trans('profiles.enabled') }}</th>
+				<th class="col-md-1">{{ trans('profiles.id') }}</th>
+				<th>{{ trans('profiles.name') }}</th>
+				<th>{{ trans('profiles.description') }}</th>
+				<th>{{ trans('forms.options') }}</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			@foreach ($profiles as $profile)
 				<tr>
-					<td>{{{ $profile->enabled }}}</td>
+					<td>
+						@if($profile->enabled == 1)
+							{{ Form::btn_active() }}
+						@else
+							{{ Form::btn_inactive() }}
+						@endif
+					</td>
+					<td>{{{ $profile->id }}}</td>
 					<td>{{{ $profile->name }}}</td>
 					<td>{{{ $profile->description }}}</td>
 
