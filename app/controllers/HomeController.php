@@ -2,6 +2,8 @@
 
 class HomeController extends BaseController {
 
+    protected $layout = 'layouts.main';
+
     public function __construct(){
         parent::__construct();
     }
@@ -56,7 +58,27 @@ class HomeController extends BaseController {
     }
 
     public function getAccessDenied(){
-        return View::make('access_denied');        
+        return View::make('access_denied');
     }
+
+    public function getLogs($param=null){
+        if(!Auth::check()){
+            return Redirect::to('/');
+        }
+
+        $files = File::files(storage_path()."/logs");
+        foreach ($files as $key => $file) {
+            $files[$key] = pathinfo($file, PATHINFO_BASENAME);
+            if($files[$key] == $param){
+                $content = str_replace(["\n","\r","\r\n"], "<br>", File::get($file));
+                $this->layout->content = View::make('logs', compact('content'));
+                return;
+            }
+        }
+
+        $this->layout->content = View::make('logs', compact('files'));
+
+    }
+
 
 }

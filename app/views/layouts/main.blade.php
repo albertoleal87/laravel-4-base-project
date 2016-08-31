@@ -253,6 +253,7 @@
 									{{ Form::side_menu_item(URL::to('profile_actions'),Request::segment(1) == 'profile_actions' ? 'active':'',"",trans('menu.profile_actions_sub')); }}
 								</ul>
 							</li>
+							{{ Form::side_menu_item(URL::to('logs'),Request::segment(1) == 'logs' ? 'active':'',"glyphicon glyphicon-folder-open",' Logs'); }}
 							{{ Form::side_menu_item(URL::to('settings'),Request::segment(1) == 'settings' ? 'active':'',"glyphicon glyphicon-cog",trans('menu.settings')); }}
 							{{ Form::side_menu_item(URL::to('logout'),'',"glyphicon glyphicon-log-out",trans('menu.logout')); }}
 						</ul>
