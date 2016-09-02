@@ -337,3 +337,8 @@ body {
 .data-table td{
 	text-align: center;
 }
+
+.control-label.required:after {
+  content:" *";
+  color:red;
+}
