@@ -12,19 +12,19 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    {{ HTML::style('public/css/bootstrap.min.css') }}
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    {{ HTML::style('public/css/metisMenu.min.css') }}
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    {{ HTML::style('public/css/sb-admin-2.css') }}
 
     <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+    {{ HTML::style('public/css/morris.css') }}
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    {{ HTML::style('public/css/font-awesome.min.css') }}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -830,7 +830,7 @@
                             <ul class="chat">
                                 <li class="left clearfix">
                                     <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                        {{ HTML::image('public/img/blue.png', 'User Avatar', ['class'=>'img-circle'] ) }}
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
@@ -846,7 +846,7 @@
                                 </li>
                                 <li class="right clearfix">
                                     <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+                                        {{ HTML::image('public/img/red.png', 'User Avatar', ['class'=>'img-circle'] ) }}
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
@@ -861,7 +861,7 @@
                                 </li>
                                 <li class="left clearfix">
                                     <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                        {{ HTML::image('public/img/blue.png', 'User Avatar', ['class'=>'img-circle'] ) }}
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
@@ -876,7 +876,7 @@
                                 </li>
                                 <li class="right clearfix">
                                     <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+                                        {{ HTML::image('public/img/red.png', 'User Avatar', ['class'=>'img-circle'] ) }}
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
@@ -916,21 +916,22 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    {{ HTML::script('public/js/jquery.min.js') }}
+
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    {{ HTML::script('public/js/bootstrap.min.js') }}
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    {{ HTML::script('public/js/metisMenu.min.js') }}
 
     <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
+    {{ HTML::script('public/js/raphael.min.js') }}
+    {{ HTML::script('public/js/morris.min.js') }}
+    {{ HTML::script('public/js/morris-data.js') }}
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    {{ HTML::script('public/js/sb-admin-2.js') }}
 
 </body>
 
