@@ -7,7 +7,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"laravelbook/ardent": "2.*",
-		"dollar/generators": "dev-master"
+		 "way/generators": "1.1"
 	},
 	"autoload": {
 		"classmap": [
