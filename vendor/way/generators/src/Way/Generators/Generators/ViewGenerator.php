@@ -41,7 +41,7 @@ class ViewGenerator extends Generator {
         $Model = Pluralizer::singular($Models); // Post
 
         // Create and Edit views require form elements
-        if ($name === 'create.blade' or $name === 'edit.blade')
+        if ($name == 'form.blade')
         {
             $formElements = $this->makeFormElements();
 
@@ -76,7 +76,7 @@ class ViewGenerator extends Generator {
 
         // First, we build the table headings
         $headings = array_map(function($field) {
-            return '<th>' . ucwords($field) . '</th>';
+            return '<th>' . ucwords(str_replace("_", " ", $field)) . '</th>';
         }, array_keys($fields));
 
         // And then the rows, themselves
@@ -86,12 +86,6 @@ class ViewGenerator extends Generator {
 
         // Now, we'll add the edit and delete buttons.
         $editAndDelete = <<<EOT
-                    <td>{{ link_to_route('{$models}.edit', 'Edit', array(\${$model}->id), array('class' => 'btn btn-info')) }}</td>
-                    <td>
-                        {{ Form::open(array('method' => 'DELETE', 'route' => array('{$models}.destroy', \${$model}->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                    </td>
 EOT;
 
         return array($headings, $fields, $editAndDelete);
@@ -109,17 +103,17 @@ EOT;
 
         foreach($this->cache->getFields() as $name => $type)
         {
-            $formalName = ucwords($name);
+            $formalName = ucwords(str_replace("_", " ", $name));
 
             // TODO: add remaining types
             switch($type)
             {
                 case 'integer':
-                   $element = "{{ Form::input('number', '$name') }}";
+                   $element = "{{ Form::input('number', '$name', null, array('class'=>'form-control')) }}";
                     break;
 
                 case 'text':
-                    $element = "{{ Form::textarea('$name') }}";
+                    $element = "{{ Form::textarea('$name', null, array('class'=>'form-control', 'placeholder'=>'$formalName')) }}";
                     break;
 
                 case 'boolean':
@@ -127,17 +121,19 @@ EOT;
                     break;
 
                 default:
-                    $element = "{{ Form::text('$name') }}";
+                    $element = "{{ Form::text('$name', null, array('class'=>'form-control', 'placeholder'=>'$formalName')) }}";
                     break;
             }
 
             // Now that we have the correct $element,
             // We can build up the HTML fragment
             $frag = <<<EOT
-        <li>
-            {{ Form::label('$name', '$formalName:') }}
-            $element
-        </li>
+        <div class="form-group">
+            {{ Form::label('$name', '$formalName:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+              $element
+            </div>
+        </div>
 
 EOT;
 

@@ -80,12 +80,12 @@ class ResourceGeneratorCommand extends Command {
         $this->generateController();
         $this->generateViews();
         $this->generateMigration();
-        $this->generateSeed();
+        #$this->generateSeed();
 
-        if (get_called_class() === 'Way\\Generators\\Commands\\ScaffoldGeneratorCommand')
-        {
-            $this->generateTest();
-        }
+        #if (get_called_class() === 'Way\\Generators\\Commands\\ScaffoldGeneratorCommand')
+        #{
+        #    $this->generateTest();
+        #}
 
         $this->generator->updateRoutesFile($this->model);
         $this->info('Updated ' . app_path() . '/routes.php');
@@ -192,18 +192,18 @@ class ResourceGeneratorCommand extends Command {
         $viewsDir = app_path().'/views';
         $container = $viewsDir . '/' . Pluralizer::plural($this->model);
         $layouts = $viewsDir . '/layouts';
-        $views = array('index', 'show', 'create', 'edit');
+        $views = array('index', 'show', 'create', 'edit','form');
 
         $this->generator->folders(
             array($container)
         );
 
         // If generating a scaffold, we also need views/layouts/scaffold
-        if (get_called_class() === 'Way\\Generators\\Commands\\ScaffoldGeneratorCommand')
-        {
-            $views[] = 'scaffold';
-            $this->generator->folders($layouts);
-        }
+        #if (get_called_class() === 'Way\\Generators\\Commands\\ScaffoldGeneratorCommand')
+        #{
+        #    $views[] = 'scaffold';
+        #    $this->generator->folders($layouts);
+        #}
 
         // Let's filter through all of our needed views
         // and create each one.

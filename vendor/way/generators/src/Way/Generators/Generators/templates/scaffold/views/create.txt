@@ -1,24 +1,13 @@
-@extends('layouts.scaffold')
+{{ Form::model(${{model}}, ['route' => '{{models}}.store', 'class' => 'form-horizontal'] ) }}
 
-@section('main')
+	@include('{{models}}.form')
 
-<h1>Create {{Model}}</h1>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">&nbsp;</label>
+		<div class="col-sm-10">
+			{{ Form::btn_save() }}
+			{{ Form::btn_cancel(URL::route('{{models}}.index')) }}
+		</div>
+	</div>
 
-{{ Form::open(array('route' => '{{models}}.store')) }}
-	<ul>
-{{formElements}}
-		<li>
-			{{ Form::submit('Submit', array('class' => 'btn btn-info')) }}
-		</li>
-	</ul>
 {{ Form::close() }}
-
-@if ($errors->any())
-	<ul>
-		{{ implode('', $errors->all('<li class="error">:message</li>')) }}
-	</ul>
-@endif
-
-@stop
-
-

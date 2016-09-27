@@ -10,9 +10,14 @@ return array(
 
 	'options' => 'Opciones',
 
+	'create' => 'Crear',
 	'show' => 'Ver',
 	'edit' => 'Editar',
 	'delete' => 'Eliminar',
+
+	'model_created_message' => ':model creado con exito!',
+	'model_updated_message' => ':model actualizado con exito!',
+	'model_deleted_message' => ':model eliminado con exito',
 
 	'confirm_delete_title' => 'Confirmar eliminar',
 	'confirm_delete_message' => '¿Estás seguro que deseas eliminar este registro?',

@@ -1,7 +1,7 @@
 <?php
 
 Form::macro('btn_create', function($url, $value){
-	return "<a href='{$url}' class='btn btn-success'><i class='glyphicon glyphicon-plus'></i> {$value}</a>";
+	return "<a href='{$url}' class='btn btn-primary'><i class='glyphicon glyphicon-plus'></i> {$value}</a>";
 });
 
 Form::macro('btn_show', function($url){
@@ -21,7 +21,7 @@ Form::macro('btn_delete', function($url){
 
 Form::macro('btn_save', function(){
 	$value = trans('forms.save');
-	return "<button type='submit' class='btn btn-success'><i class='glyphicon glyphicon-floppy-disk'></i> {$value}</button>";
+	return "<button type='submit' class='btn btn-primary'><i class='glyphicon glyphicon-floppy-disk'></i> {$value}</button>";
 });
 
 Form::macro('btn_cancel', function($url){
