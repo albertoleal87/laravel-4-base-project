@@ -3,11 +3,11 @@
 class BaseController extends Controller {
 
 	public function __construct(){
-		Log::debug(Route::currentRouteName());
+		#Log::debug(Route::currentRouteName());
 		
-		if(Auth::check() && !empty(Route::currentRouteName()) && !User::canAccess(Route::currentRouteName())){
-			Redirect::to('access-denied')->send();
-		}
+		#if(Auth::check() && !empty(Route::currentRouteName()) && !User::canAccess(Route::currentRouteName())){
+		#	Redirect::to('access-denied')->send();
+		#}
 
 		if(Session::has('lang')){
 			Config::set('app.locale',Session::get('lang'));
