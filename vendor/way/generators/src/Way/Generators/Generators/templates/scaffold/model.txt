@@ -2,8 +2,8 @@
 
 class {{className}} extends Ardent {
 
-	protected $fillable = array();
-	protected $guarded = array();
+	protected $fillable = [];	
+	protected $guarded = [];
 
-	public static $rules = array({{rules}});
+	public static $rules = [{{rules}}];
 }

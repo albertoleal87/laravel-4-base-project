@@ -117,7 +117,7 @@ EOT;
                     break;
 
                 case 'boolean':
-                    $element = "{{ Form::checkbox('$name') }}";
+                    $element = "{{ Form::hidden('$name', '0') }} {{ Form::checkbox('$name', '1') }}";
                     break;
 
                 default:
