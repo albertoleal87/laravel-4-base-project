@@ -3,7 +3,25 @@
 class {{className}} extends Ardent {
 
 	protected $fillable = [];	
+	
 	protected $guarded = [];
 
 	public static $rules = [{{rules}}];
+
+	public static $customMessages = [];
+	
+	public static $relationsData = [];
+
+	public function beforeCreate(){}
+	public function beforeSave(){}
+	public function beforeUpdate(){}
+	public function beforeDelete(){}
+	public function beforeValidate(){}
+
+	public function afterCreate(){}
+	public function afterSave(){}
+	public function afterUpdate(){}
+	public function afterDelete(){}
+	public function afterValidate(){}
+
 }

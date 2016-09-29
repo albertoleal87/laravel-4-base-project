@@ -80,6 +80,7 @@ class ResourceGeneratorCommand extends Command {
         $this->generateController();
         $this->generateViews();
         $this->generateMigration();
+        $this->callMigrate();
         #$this->generateSeed();
 
         #if (get_called_class() === 'Way\\Generators\\Commands\\ScaffoldGeneratorCommand')
@@ -286,4 +287,14 @@ class ResourceGeneratorCommand extends Command {
         );
     }
 
+    /**
+     * Migrate database if user confirms
+     */
+    protected function callMigrate()
+    {
+        if ($this->confirm('Do you want to go ahead and migrate the database? [yes|no]')) {
+            $this->call('migrate');
+            $this->info('Done!');
+        }
+    }
 }

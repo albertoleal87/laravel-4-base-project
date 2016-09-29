@@ -83,8 +83,9 @@ class {{className}} extends BaseController {
 	public function update($id)
 	{
 		${{model}} = {{Model}}::findOrFail($id);
+		${{model}}->fill(Input::all());
 
-		if(${{model}}->update(Input::all())){
+		if(${{model}}->updateUniques()){
 			return Redirect::route('{{models}}.index')->with('success', trans('forms.model_updated_message',['model'=>'{{Model}}']) );
 		}else{
 			return Redirect::route('{{models}}.edit', $id)->withInput()->withErrors(${{model}}->errors());
